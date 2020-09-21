@@ -9,25 +9,25 @@ require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
 // extends class dari REST_Controller
-class Subtema_sd_api extends REST_Controller
+class Bab_api extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Admin_api_model/Subtema_model_api', 'api');
+        $this->load->model('Admin_api_model/Bab_model_api', 'api');
     }
     public function index_get()
     {
-        $subtema = $this->get('id_subtema_sd');
-        if ($subtema === null) {
-            $getsubtema = $this->api->getSubtema();
+        $bab = $this->get('id_bab_latihan');
+        if ($bab === null) {
+            $getbab = $this->api->getBab();
         } else {
-            $getsubtema = $this->api->getSubtema($subtema);
+            $getbab = $this->api->getBab($bab);
         }
-        if ($getsubtema) {
+        if ($getbab) {
             $this->response([
                 'status' => true,
-                'data' => $getsubtema
+                'data' => $getbab
 
             ], REST_Controller::HTTP_OK);
         } else {
@@ -40,15 +40,15 @@ class Subtema_sd_api extends REST_Controller
 
     public function index_delete()
     {
-        $subtema = $this->delete('id_subtema_sd');
+        $bab = $this->delete('id_bab_latihan');
 
-        if (!$subtema) {
+        if (!$bab) {
             $this->response([
                 'status' => false,
                 'message' => 'provide an id'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->api->deleteSubtema($subtema) > 0) {
+            if ($this->api->deleteBab($bab) > 0) {
                 $this->response([
                     'status' => true,
                     'message' => 'deleted success'
@@ -65,12 +65,15 @@ class Subtema_sd_api extends REST_Controller
     public function index_post()
     {
         $data = [
-            'id_subtema_sd' => $this->post('id_subtema_sd'),
-            'tema_sd_id' => $this->post('tema_sd_id'),
-            'nama_subtema' => $this->post('nama_subtema')
+            'id_bab_latihan' => $this->post('id_bab_latihan'),
+            'jurusan_id' => $this->post('jurusan_id'),
+            'mapel_id' => $this->post('mapel_id'),
+            'jenjang_id' => $this->post('jenjang_id'),
+            'kelas_id' => $this->post('kelas_id'),
+            'nama_bab' => $this->post('nama_bab')
 
         ];
-        if ($this->api->createSubtema($data) > 0) {
+        if ($this->api->createBab($data) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'new data has been created'
@@ -85,13 +88,16 @@ class Subtema_sd_api extends REST_Controller
 
     public function index_put()
     {
-        $subtema = $this->put('id_subtema_sd');
+        $bab = $this->put('id_bab_latihan');
         $data = [
-            'id_subtema_sd' => $this->put('id_subtema_sd'),
-            'tema_sd_id' => $this->put('tema_sd_id'),
-            'nama_subtema' => $this->put('nama_subtema')
+            'id_bab_latihan' => $this->put('id_bab_latihan'),
+            'jurusan_id' => $this->put('jurusan_id'),
+            'mapel_id' => $this->put('mapel_id'),
+            'jenjang_id' => $this->put('jenjang_id'),
+            'kelas_id' => $this->put('kelas_id'),
+            'nama_bab' => $this->put('nama_bab')
         ];
-        if ($this->api->updateSubtema($data, $subtema) > 0) {
+        if ($this->api->updateBab($data, $bab) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'update success'

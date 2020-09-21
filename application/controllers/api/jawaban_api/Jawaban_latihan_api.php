@@ -9,25 +9,25 @@ require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
 // extends class dari REST_Controller
-class Subtema_sd_api extends REST_Controller
+class Jawaban_latihan_api extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Admin_api_model/Subtema_model_api', 'api');
+        $this->load->model('Jawaban_api_model/Jawaban_latihan_model_api', 'api');
     }
     public function index_get()
     {
-        $subtema = $this->get('id_subtema_sd');
-        if ($subtema === null) {
-            $getsubtema = $this->api->getSubtema();
+        $jawabanlatihan = $this->get('id_jawaban_latihan');
+        if ($jawabanlatihan === null) {
+            $getjawabanlatihan = $this->api->getJawabanlatihan();
         } else {
-            $getsubtema = $this->api->getSubtema($subtema);
+            $getjawabanlatihan = $this->api->getJawabanlatihan($jawabanlatihan);
         }
-        if ($getsubtema) {
+        if ($getjawabanlatihan) {
             $this->response([
                 'status' => true,
-                'data' => $getsubtema
+                'data' => $getjawabanlatihan
 
             ], REST_Controller::HTTP_OK);
         } else {
@@ -40,15 +40,15 @@ class Subtema_sd_api extends REST_Controller
 
     public function index_delete()
     {
-        $subtema = $this->delete('id_subtema_sd');
+        $jawabanlatihan = $this->delete('id_jawaban_latihan');
 
-        if (!$subtema) {
+        if (!$jawabanlatihan) {
             $this->response([
                 'status' => false,
                 'message' => 'provide an id'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->api->deleteSubtema($subtema) > 0) {
+            if ($this->api->deleteJawabanlatihan($jawabanlatihan) > 0) {
                 $this->response([
                     'status' => true,
                     'message' => 'deleted success'
@@ -65,12 +65,16 @@ class Subtema_sd_api extends REST_Controller
     public function index_post()
     {
         $data = [
-            'id_subtema_sd' => $this->post('id_subtema_sd'),
-            'tema_sd_id' => $this->post('tema_sd_id'),
-            'nama_subtema' => $this->post('nama_subtema')
+            'id_jawaban_latihan' => $this->post('id_jawaban_latihan'),
+            'soal_latihan_id' => $this->post('soal_latihan_id'),
+            'kunci_jawaban_latihan_id' => $this->post('kunci_jawaban_latihan_id'),
+            'option_a' => $this->post('option_a'),
+            'option_b' => $this->post('option_b'),
+            'option_c' => $this->post('option_c'),
+            'option_d' => $this->post('option_d')
 
         ];
-        if ($this->api->createSubtema($data) > 0) {
+        if ($this->api->createJawabanlatihan($data) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'new data has been created'
@@ -85,13 +89,17 @@ class Subtema_sd_api extends REST_Controller
 
     public function index_put()
     {
-        $subtema = $this->put('id_subtema_sd');
+        $jawabanlatihan = $this->put('id_jawaban_latihan');
         $data = [
-            'id_subtema_sd' => $this->put('id_subtema_sd'),
-            'tema_sd_id' => $this->put('tema_sd_id'),
-            'nama_subtema' => $this->put('nama_subtema')
+            'id_jawaban_latihan' => $this->put('id_jawaban_latihan'),
+            'soal_latihan_id' => $this->put('soal_latihan_id'),
+            'kunci_jawaban_latihan_id' => $this->put('kunci_jawaban_latihan_id'),
+            'option_a' => $this->put('option_a'),
+            'option_b' => $this->put('option_b'),
+            'option_c' => $this->put('option_c'),
+            'option_d' => $this->put('option_d')
         ];
-        if ($this->api->updateSubtema($data, $subtema) > 0) {
+        if ($this->api->updateJawabanlatihan($data, $jawabanlatihan) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'update success'
