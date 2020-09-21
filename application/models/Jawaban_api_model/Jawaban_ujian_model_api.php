@@ -23,7 +23,7 @@ class Jawaban_ujian_model_api extends CI_Model
     }
     public  function updateJawabanujian($data, $jawabanujian)
     {
-        $this->db->update('tb_jawaban_ujian', $data, ['id_jawaban_ujian' => $user]);
+        $this->db->update('tb_jawaban_ujian', $data, ['id_jawaban_ujian' => $jawabanujian]);
         return $this->db->affected_rows();
     }
 }
