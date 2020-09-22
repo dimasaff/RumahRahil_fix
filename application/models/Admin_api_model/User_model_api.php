@@ -10,6 +10,10 @@ class User_model_api extends CI_Model
             return $this->db->get_where('tb_user', ['id_user' => $user])->result_array();
         }
     }
+    public function getUserWhereEmail($email)
+    {
+        return $this->db->get_where('tb_user', ['email' => $email])->row_array();
+    }
     public function userFullJoin()
     {
         return $this->db->query("SELECT r.nama_role, ju.nama_jurusan, m.nama_mapel, je.nama_jenjang, k.nama_kelas, u.nama, u.nama, u.alamat, u.email, u.password, u.foto_profile, u.asal_sekolah 
