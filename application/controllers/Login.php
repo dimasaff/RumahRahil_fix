@@ -100,11 +100,42 @@ class Login extends CI_Controller
                 'asal_sekolah' => htmlspecialchars($this->input->post('asal_sekolah')),
             ];
             $this->user->createUser($data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Registrasi Berhasil</div>');
             redirect('login');
         }
     }
 
     public function _login()
     {
+        $email = htmlspecialchars($this->input->post('email'));
+        $password = $this->input->post('password');
+        $user = $this->db->get_where('tb_user', ['email' => $email])->row_array();
+        if ($user) {
+            if ($password == $user['password']) {
+                if ($user['role_id'] == 1) {
+                    $data = [
+                        'email' => $user['email'],
+                        'role_id' => $user['role_id']
+                    ];
+                    $this->session->set_userdata($data);
+                    redirect('dashboard');
+                } else {
+                    echo "halaman siswa/guru (masih tahap pengambangan)";
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password anda salah</div>');
+                redirect('login');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email anda belum terdaftar</div>');
+            redirect('login');
+        }
+    }
+    public function logout()
+    {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda berhasil Logout</div>');
+        redirect('login');
     }
 }
