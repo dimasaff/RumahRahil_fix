@@ -10,7 +10,16 @@ class User_model_api extends CI_Model
             return $this->db->get_where('tb_user', ['id_user' => $user])->result_array();
         }
     }
-
+    public function userFullJoin()
+    {
+        return $this->db->query("SELECT r.nama_role, ju.nama_jurusan, m.nama_mapel, je.nama_jenjang, k.nama_kelas, u.nama, u.nama, u.alamat, u.email, u.password, u.foto_profile, u.asal_sekolah 
+                                    FROM tb_role r 
+                                    JOIN tb_user u ON r.id_role = u.role_id 
+                                    JOIN tb_jurusan ju ON ju.id_jurusan = u.jurusan_id
+                                    JOIN tb_mapel m ON m.id_mapel = u.mapel_id
+                                    JOIN tb_jenjang je ON je.id_jenjang = u.jenjang_id
+                                    JOIN tb_kelas k ON k.id_kelas = u.kelas_id")->result_array();
+    }
     public function deleteUser($user)
     {
         $this->db->delete('tb_user', ['id_user' => $user]);

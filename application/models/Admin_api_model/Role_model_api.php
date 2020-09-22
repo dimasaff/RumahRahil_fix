@@ -10,4 +10,8 @@ class Role_model_api extends CI_Model
             return $this->db->get_where('tb_role', ['id_role' => $role])->result_array();
         }
     }
+    public function getRoleWhereId()
+    {
+        return $this->db->query("SELECT*FROM tb_role WHERE id_role > 1")->result_array();
+    }
 }

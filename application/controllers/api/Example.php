@@ -1,13 +1,14 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+use chriskacerguis\RestServer\REST_Controller;
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 // This can be removed if you use __autoload() in config.php OR use Modular Extensions
 /** @noinspection PhpIncludeInspection */
-require APPPATH . '/libraries/REST_Controller.php';
-
-// use namespace
-use Restserver\Libraries\REST_Controller;
+//To Solve File REST_Controller not found
+require APPPATH . 'libraries/REST_Controller.php';
+require APPPATH . 'libraries/Format.php';
 
 /**
  * This is an example of a few basic user interaction methods you could use
@@ -20,7 +21,8 @@ use Restserver\Libraries\REST_Controller;
  * @license         MIT
  * @link            https://github.com/chriskacerguis/codeigniter-restserver
  */
-class Example extends REST_Controller {
+class Example extends REST_Controller
+{
 
     function __construct()
     {
@@ -47,62 +49,50 @@ class Example extends REST_Controller {
 
         // If the id parameter doesn't exist return all the users
 
-        if ($id === NULL)
-        {
+        if ($id === null) {
             // Check if the users data store contains users (in case the database result returns NULL)
-            if ($users)
-            {
+            if ($users) {
                 // Set the response and exit
                 $this->response($users, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
-            }
-            else
-            {
+            } else {
                 // Set the response and exit
                 $this->response([
-                    'status' => FALSE,
+                    'status' => false,
                     'message' => 'No users were found'
                 ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
             }
         }
 
         // Find and return a single record for a particular user.
-        else {
-            $id = (int) $id;
 
-            // Validate the id.
-            if ($id <= 0)
-            {
-                // Invalid id, set the response and exit.
-                $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
-            }
+        $id = (int) $id;
 
-            // Get the user from the array, using the id as key for retrieval.
-            // Usually a model is to be used for this.
+        // Validate the id.
+        if ($id <= 0) {
+            // Invalid id, set the response and exit.
+            $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
+        }
 
-            $user = NULL;
+        // Get the user from the array, using the id as key for retrieval.
+        // Usually a model is to be used for this.
 
-            if (!empty($users))
-            {
-                foreach ($users as $key => $value)
-                {
-                    if (isset($value['id']) && $value['id'] === $id)
-                    {
-                        $user = $value;
-                    }
+        $user = null;
+
+        if (!empty($users)) {
+            foreach ($users as $key => $value) {
+                if (isset($value['id']) && $value['id'] === $id) {
+                    $user = $value;
                 }
             }
+        }
 
-            if (!empty($user))
-            {
-                $this->set_response($user, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
-            }
-            else
-            {
-                $this->set_response([
-                    'status' => FALSE,
-                    'message' => 'User could not be found'
-                ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
-            }
+        if (!empty($user)) {
+            $this->set_response($user, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+        } else {
+            $this->set_response([
+                'status' => false,
+                'message' => 'User could not be found'
+            ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
         }
     }
 
@@ -124,10 +114,9 @@ class Example extends REST_Controller {
         $id = (int) $this->get('id');
 
         // Validate the id.
-        if ($id <= 0)
-        {
+        if ($id <= 0) {
             // Set the response and exit
-            $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
+            $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
 
         // $this->some_model->delete_something($id);
@@ -138,5 +127,4 @@ class Example extends REST_Controller {
 
         $this->set_response($message, REST_Controller::HTTP_NO_CONTENT); // NO_CONTENT (204) being the HTTP response code
     }
-
 }
