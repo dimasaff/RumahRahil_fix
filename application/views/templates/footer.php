@@ -3,17 +3,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                <h5 class="modal-title" id="exampleModalLabelLogout">Logout</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to logout?</p>
+                <p>Apakah anda yakin ingin Logout?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <a href="login.html" class="btn btn-primary">Logout</a>
+                <a href="<?= base_url('Login/logout'); ?>" class="btn btn-primary">Logout</a>
             </div>
         </div>
     </div>
@@ -47,6 +47,60 @@
 <script src="<?= base_url('asset/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url('asset/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="<?= base_url('asset/'); ?>js/ruang-admin.min.js"></script>
+
+<script>
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+    function actionTema() {
+        let a = document.getElementById('sortKelas').value;
+        tema(a);
+    }
+
+    function actionSubTema() {
+        let a = document.getElementById('sortTema').value;
+        subtema(a);
+    }
+
+    function tema(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabeltema").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('tema/tableTema/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function subtema(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelsubtema").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('subtema/tableSubtema/'); ?>" + a, true);
+        xhttp.send();
+    }
+</script>
 
 </body>
 

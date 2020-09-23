@@ -10,4 +10,8 @@ class Kelas_model_api extends CI_Model
             return $this->db->get_where('tb_kelas', ['id_kelas' => $kelas])->result_array();
         }
     }
+    public function getKelasSD()
+    {
+        return $this->db->query("SELECT*FROM tb_kelas WHERE id_kelas < 7")->result_array();
+    }
 }
