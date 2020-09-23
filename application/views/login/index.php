@@ -12,7 +12,7 @@
                                 <h1 class="h4 text-gray-900 mb-4">Login Page</h1>
                             </div>
                             <?= $this->session->flashdata('message'); ?>
-                            <form class="user" method="POST" action="<?= base_url('Login'); ?>">
+                            <form class="user" method="POST" action="<?= base_url('Login'); ?>" class="needs-validation" novalidate>
                                 <div class="form-group">
                                     <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Alamat Email" name="email" required>
                                     <div class="invalid-feedback">

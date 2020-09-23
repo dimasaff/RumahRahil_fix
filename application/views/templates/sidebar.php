@@ -24,9 +24,9 @@
         <div id="collapseBootstrapSD" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data SD</h6>
-                <a class="collapse-item" href="alerts.html">Tema</a>
-                <a class="collapse-item" href="buttons.html">Sub Tema</a>
-                <a class="collapse-item" href="dropdowns.html">Paket Latihan</a>
+                <a class="collapse-item" href="<?= base_url('Tema'); ?>">Tema</a>
+                <a class="collapse-item" href="<?= base_url('Subtema'); ?>">Sub Tema</a>
+                <a class="collapse-item" href="<?= base_url('PaketSoalSd'); ?>">Paket Latihan</a>
                 <a class="collapse-item" href="modals.html">Kunci Jawaban</a>
                 <a class="collapse-item" href="popovers.html">Soal</a>
                 <a class="collapse-item" href="progress-bar.html">Option Jawaban</a>
