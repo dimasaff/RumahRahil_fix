@@ -2,11 +2,11 @@
 <?php foreach ($mapel as $m) : ?>
     <tr>
         <th scope="row"><?= $i; ?></th>
-        <td>Kelas <?= $t['nama_kelas']; ?></td>
-        <td><?= $t['nama_mapel']; ?></td>
+        <td>Kelas <?= $m['nama_kelas']; ?></td>
+        <td><?= $m['nama_mapel']; ?></td>
         <td>
-            <a href="" data-toggle="modal" data-target="#updateModal<?= $t['id_mapel']; ?>" class="btn btn-warning px-3"><i class="fas fa-user-edit" aria-hidden="true"></i></a>
-            <a href="" data-toggle="modal" data-target="#deleteModal<?= $t['id_mapel']; ?>" class="btn btn-danger px-3"><i class="far fa-trash-alt" aria-hidden="true"></i></a>
+            <a href="" data-toggle="modal" data-target="#updateModal<?= $m['id_mapel']; ?>" class="btn btn-warning px-3"><i class="fas fa-user-edit" aria-hidden="true"></i></a>
+            <a href="" data-toggle="modal" data-target="#deleteModal<?= $m['id_mapel']; ?>" class="btn btn-danger px-3"><i class="far fa-trash-alt" aria-hidden="true"></i></a>
         </td>
     </tr>
     <?php $i++; ?>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputNameMapel">Nama Mapel</label>
-                            <input type="text" class="form-control" id="exampleInputNameMapel" placeholder="Masukkan Nama Mapel" name="nama_mapel" value="<?= $tm['nama_mapel']; ?>" required>
+                            <input type="text" class="form-control" id="exampleInputNameMapel" placeholder="Masukkan Nama Mapel" name="nama_mapel" value="<?= $mp['nama_mapel']; ?>" required>
                             <div class="invalid-feedback">
                                 Data Tidak Boleh Kosong
                             </div>

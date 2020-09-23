@@ -13,14 +13,14 @@ class Mapel_model_api extends CI_Model
     public function getMapelJoinKelas($kelasId = null)
     {
         if ($kelasId === null) {
-            return $this->db->query("SELECT tb_mapel.id_mapel, tb_bab_latihan.kelas_id, tb_bab_latihan.nama_bab,tb_mapel.nama_mapel 
-                                        FROM tb_bab_latihan JOIN tb_mapel
-                                        ON tb_bab_latihan.kelas.id = tb_mapel.id_mapel")->result_array();
+            return $this->db->query("SELECT tb_mapel.id_mapel, tb_kelas.id_kelas, tb_kelas.nama_kelas, tb_mapel.kelas_id,tb_mapel.nama_mapel 
+                                        FROM tb_kelas JOIN tb_mapel
+                                        ON tb_kelas.id_kelas = tb_mapel.kelas_id")->result_array();
         } else {
-            return $this->db->query("SELECT tb_mapel.id_mapel, tb_bab_latihan.kelas_id, tb_bab_latihan.nama_bab,tb_mapel.nama_mapel 
-                                        FROM tb_bab_latihan JOIN tb_mapel
-                                        ON tb_bab_latihan.kelas.id = tb_mapel.id_mapel
-                                        WHERE tb_bab_latihan.kelas_id = $kelasId")->result_array();
+            return $this->db->query("SELECT tb_mapel.id_mapel, tb_kelas.id_kelas, tb_kelas.nama_kelas, tb_mapel.kelas_id,tb_mapel.nama_tema 
+                                        FROM tb_kelas JOIN tb_mapel
+                                        ON tb_kelas.id_kelas = tb_mapel.kelas_id
+                                        WHERE tb_mapel.kelas_id = $kelasId")->result_array();
         }
     }
     public function deleteMapel($mapel)
