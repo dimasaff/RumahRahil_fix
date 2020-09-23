@@ -41,7 +41,7 @@
         <div id="collapseBootstrapSMP" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data SMP</h6>
-                <a class="collapse-item" href="buttons.html">Mata Pelajaran</a>
+                <a class="collapse-item" href="<?= base_url('Mapel'); ?>">Mata Pelajaran</a>
                 <a class="collapse-item" href="dropdowns.html">Bab</a>
                 <a class="collapse-item" href="modals.html">Kunci Jawaban</a>
                 <a class="collapse-item" href="popovers.html">Soal</a>

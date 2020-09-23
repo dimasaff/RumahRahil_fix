@@ -14,4 +14,8 @@ class Kelas_model_api extends CI_Model
     {
         return $this->db->query("SELECT*FROM tb_kelas WHERE id_kelas < 7")->result_array();
     }
+    public function getKelasSMP()
+    {
+        return $this->db->query("SELECT*FROM tb_kelas WHERE id_kelas > 7")->result_array();
+    }
 }

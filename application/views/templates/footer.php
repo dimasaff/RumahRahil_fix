@@ -76,6 +76,10 @@
         let a = document.getElementById('sortTema').value;
         subtema(a);
     }
+    function actionMapel() {
+        let a = document.getElementById('sortKelas').value;
+        mapel(a);
+    }
 
     function tema(a) {
         var xhttp;
@@ -98,6 +102,18 @@
             }
         };
         xhttp.open("POST", "<?= base_url('subtema/tableSubtema/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function mapel(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelmapel").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('mapel/tableMapel/'); ?>" + a, true);
         xhttp.send();
     }
 </script>
