@@ -10,6 +10,8 @@ class Mapel_model_api extends CI_Model
             return $this->db->get_where('tb_mapel', ['id_mapel' => $mapel])->result_array();
         }
     }
+
+
     public function getMapelJoinKelas($kelasId = null)
     {
         if ($kelasId === null) {
@@ -37,5 +39,10 @@ class Mapel_model_api extends CI_Model
     {
         $this->db->update('tb_mapel', $data, ['id_mapel' => $mapel]);
         return $this->db->affected_rows();
+    }
+
+    public function getMapelSMP()
+    {
+        return $this->db->query("SELECT*FROM tb_mapel WHERE id_mapel > 7")->result_array();
     }
 }

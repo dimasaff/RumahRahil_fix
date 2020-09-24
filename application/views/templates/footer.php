@@ -82,9 +82,16 @@
         mapel(a);
     }
 
+
     function actionPaketSD() {
         let a = document.getElementById('sortSubtema').value;
         paket(a);
+    }
+
+    function actionBab() {
+        let a = document.getElementById('sortJurusan').value;
+        bab(a);
+
     }
 
     function tema(a) {
@@ -123,6 +130,7 @@
         xhttp.send();
     }
 
+
     function paket(a) {
         var xhttp;
         xhttp = new XMLHttpRequest();
@@ -132,6 +140,18 @@
             }
         };
         xhttp.open("POST", "<?= base_url('PaketSoalSd/tablePaketsd/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function bab(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelbab").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('bab/tableBab/'); ?>" + a, true);
         xhttp.send();
     }
 </script>
