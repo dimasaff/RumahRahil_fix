@@ -11,7 +11,7 @@
                         <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
                         <span>
                             <div class="col-md-5 mt-2 mb-2">
-                                <select id="sortTema" class="form-control" name="sortTema" required onchange="actionSubTema()">
+                                <select id="sortTema" class="form-control" name="sortTema" required onchange="actionSubTemaSD()">
                                     <option selected value="all">Tampilkan Semua</option>..</option>
                                     <?php foreach ($tema as $t) : ?>
                                         <option value="<?= $t['id_tema_sd']; ?>"><?= $t['nama_tema']; ?></option>

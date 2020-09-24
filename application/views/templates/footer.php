@@ -67,18 +67,24 @@
         }, false);
     })();
 
-    function actionTema() {
+    function actionTemaSD() {
         let a = document.getElementById('sortKelas').value;
         tema(a);
     }
 
-    function actionSubTema() {
+    function actionSubTemaSD() {
         let a = document.getElementById('sortTema').value;
         subtema(a);
     }
+
     function actionMapel() {
         let a = document.getElementById('sortKelas').value;
         mapel(a);
+    }
+
+    function actionPaketSD() {
+        let a = document.getElementById('sortSubtema').value;
+        paket(a);
     }
 
     function tema(a) {
@@ -114,6 +120,18 @@
             }
         };
         xhttp.open("POST", "<?= base_url('mapel/tableMapel/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function paket(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelpaketsd").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('PaketSoalSd/tablePaketsd/'); ?>" + a, true);
         xhttp.send();
     }
 </script>

@@ -10,7 +10,7 @@
                         </div>
                         <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
                         <div class="col-md-5 mt-2 mb-2">
-                            <select id="sortKelas" class="form-control" required onchange="actionTema()">
+                            <select id="sortKelas" class="form-control" required onchange="actionTemaSD()">
                                 <option selected value="all">Tampilkan Semua</option>..</option>
                                 <?php foreach ($kelas as $t) : ?>
                                     <option value="<?= $t['id_kelas']; ?>"><?= $t['nama_kelas']; ?></option>

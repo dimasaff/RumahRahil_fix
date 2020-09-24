@@ -11,6 +11,24 @@ class Kunci_sd_model_api extends CI_Model
         }
     }
 
+    public function getKunciSdJoinPaketAndNoSoal($id = null)
+    {
+        if ($id === null) {
+            return $this->db->query("SELECT ns.id_no_soal, ns.no_soal, kjs.id_kunci_jawaban_sd, kjs.paket_latihan_sd_id, kjs.no_soal_id, kjs.jawaban_benar, pls.subtema_sd_id, pls.nama_paket_sd, ss.nama_subtema
+                                        FROM tb_no_soal ns 
+                                        JOIN tb_kunci_jawaban_sd kjs ON ns.id_no_soal = kjs.no_soal_id 
+                                        JOIN tb_paket_latihan_sd pls ON pls.id_paket_latihan_sd = kjs.paket_latihan_sd_id
+                                        JOIN tb_subtema_sd ss ON ss.id_subtema_sd = pls.subtema_sd_id")->result_array();
+        } else {
+            return $this->db->query("SELECT ns.id_no_soal, ns.no_soal, kjs.id_kunci_jawaban_sd, kjs.paket_latihan_sd_id, kjs.no_soal_id, kjs.jawaban_benar, pls.subtema_sd_id, pls.nama_paket_sd, ss.nama_subtema
+                                        FROM tb_no_soal ns 
+                                        JOIN tb_kunci_jawaban_sd kjs ON ns.id_no_soal = kjs.no_soal_id 
+                                        JOIN tb_paket_latihan_sd pls ON pls.id_paket_latihan_sd = kjs.paket_latihan_sd_id
+                                        JOIN tb_subtema_sd ss ON ss.id_subtema_sd = pls.subtema_sd_id
+                                        WHERE kjs.paket_latihan_sd_id = $id")->result_array();
+        }
+    }
+
     public function deleteKuncisd($kuncisd)
     {
         $this->db->delete('tb_kunci_jawaban_sd', ['id_kunci_jawaban_sd' => $kuncisd]);
@@ -23,7 +41,7 @@ class Kunci_sd_model_api extends CI_Model
     }
     public  function updateKuncisd($data, $kuncisd)
     {
-        $this->db->update('tb_kunci_jawaban_sd', $data, ['id_kunci_jawaban_sd' => $user]);
+        $this->db->update('tb_kunci_jawaban_sd', $data, ['id_kunci_jawaban_sd' => $kuncisd]);
         return $this->db->affected_rows();
     }
 }
