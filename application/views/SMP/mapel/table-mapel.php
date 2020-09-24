@@ -12,7 +12,7 @@
     <?php $i++; ?>
 <?php endforeach; ?>
 <?php foreach ($mapel as $mp) : ?>
-    <div class="modal fade" id="updateModal<?= $mp['id_mapel']; ?>" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel<?= $tm['id_mapel']; ?>" aria-hidden="true">
+    <div class="modal fade" id="updateModal<?= $mp['id_mapel']; ?>" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel<?= $mp['id_mapel']; ?>" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -54,7 +54,7 @@
 <?php endforeach; ?>
 <!-- Modal -->
 <?php foreach ($mapel as $mp) : ?>
-    <div class="modal fade" id="deleteModal<?= $mp['id_mapel']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel<?= $tm['id_mapel']; ?>" aria-hidden="true">
+    <div class="modal fade" id="deleteModal<?= $mp['id_mapel']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel<?= $mp['id_mapel']; ?>" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form method="POST" action="<?= base_url('mapel/deleteMapel/') . $mp['id_mapel']; ?>">
