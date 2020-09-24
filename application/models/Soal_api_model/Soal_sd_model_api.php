@@ -23,7 +23,7 @@ class Soal_sd_model_api extends CI_Model
     }
     public  function updateSoalsd($data, $soalsd)
     {
-        $this->db->update('tb_soal_latihan_sd', $data, ['id_soal_latihan_sd' => $user]);
+        $this->db->update('tb_soal_latihan_sd', $data, ['id_soal_latihan_sd' => $soalsd]);
         return $this->db->affected_rows();
     }
 }
