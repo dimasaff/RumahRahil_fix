@@ -10,4 +10,13 @@ class Jurusan_model_api extends CI_Model
             return $this->db->get_where('tb_jurusan', ['id_jurusan' => $jurusan])->result_array();
         }
     }
+    public function getJurusanSMP()
+    {
+        return $this->db->query("SELECT*FROM tb_jurusan WHERE id_jurusan")->result_array();
+    }
+
+    
+    
+    
 }
+
