@@ -87,15 +87,13 @@
         let a = document.getElementById('sortSubtema').value;
         paket(a);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 147085972f0dbc720934e21e70604fefc804aa2b
     function actionBab() {
         let a = document.getElementById('sortJurusan').value;
         bab(a);
-
     }
+
+
 
     function tema(a) {
         var xhttp;
@@ -143,33 +141,7 @@
             }
         };
         xhttp.open("POST", "<?= base_url('PaketSoalSd/tablePaketsd/'); ?>" + a, true);
-<<<<<<< HEAD
         xhttp.send();
-    }
-
-    function bab(a) {
-        var xhttp;
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("tabelbab").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("POST", "<?= base_url('bab/tableBab/'); ?>" + a, true);
-=======
->>>>>>> 147085972f0dbc720934e21e70604fefc804aa2b
-        xhttp.send();
-    }
-    function bab(a) {
-       var xhttp;
-       xhttp = new XMLHttpRequest();
-       xhttp.onreadystatechange = function() {
-           if (this.readyState == 4 && this.status == 200) {
-               document.getElementById("tabelbab").innerHTML = this.responseText;
-           }
-       };
-       xhttp.open("POST", "<?= base_url('bab/tableBab/'); ?>" + a, true);
-       xhttp.send();
     }
 </script>
 
