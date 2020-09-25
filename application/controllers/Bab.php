@@ -23,7 +23,7 @@ class Bab extends CI_Controller
         $data['kelas'] = $this->kelas->getKelasSMP();
         $data['bab']['bab'] = $this->bab->getBabJoinJurusan();
         $data['title'] = 'Bab';
-        if ($this->input->post('jurusan') == null) {
+        if ($this->input->post('mapel') == null) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -31,7 +31,7 @@ class Bab extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'jurusan_id' => $this->input->post('jurusan'),
+                
                 'mapel_id' => $this->input->post('mapel'),
                 'jenjang_id' => $this->input->post('jenjang'),
                 'kelas_id' => $this->input->post('kelas'),
@@ -46,7 +46,7 @@ class Bab extends CI_Controller
     public function updateBab($id)
     {
         $data = [
-            'jurusan_id' => $this->input->post('jurusan'),
+            
             'mapel_id' => $this->input->post('mapel'),
             'jenjang_id' => $this->input->post('jenjang'),
             'kelas_id' => $this->input->post('kelas'),
