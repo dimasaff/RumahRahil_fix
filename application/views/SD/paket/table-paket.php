@@ -24,7 +24,7 @@
                 <form class="needs-validation" method="POST" action="<?= base_url('PaketSoalSd/updatePaketsd/') . $stm['id_paket_latihan_sd']; ?>" novalidate>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="inputKelas">UbTema</label>
+                            <label for="inputKelas">SubTema</label>
                             <select id="inputKelas" class="form-control" name="nama_subtema" required>
                                 <option value="<?= $stm['subtema_sd_id']; ?>" selected><?= $stm['nama_subtema']; ?></option>
                                 <?php foreach ($subtema as $t) : ?>

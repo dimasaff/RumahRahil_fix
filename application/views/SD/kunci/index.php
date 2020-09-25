@@ -8,17 +8,19 @@
                         <div class="col-lg">
                             <?= $this->session->flashdata('message'); ?>
                         </div>
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
-                        <span>
-                            <div class="col-md-5 mt-2 mb-2">
-                                <select id="sortPaketSd" class="form-control" name="sortPaketSd" required onchange="">
-                                    <option selected value="all">Tampilkan Semua</option>..</option>
+                        <div class="col-md-12 mt-2 mb-2">
+                            <div class="row mt-5">
+                                <label for="sortPaketSD" class="col-md-2">Tampilkan Kunci Jawaban Soal : </label>
+                                <select id="sortPaketSd" class="form-control col-md-3" name="sortPaketSd" required onchange="actionKunciSD()">
+                                    <option selected>Pilih Paket Sesuai Subtema</option>..</option>
                                     <?php foreach ($paket as $t) : ?>
-                                        <option value="<?= $t['id_paket_latihan_sd']; ?>"><?= $t['nama_paket_sd']; ?></option>
+                                        <option value="<?= $t['id_paket_latihan_sd']; ?>"><?= $t['nama_paket_sd'] . " : " . $t['nama_subtema']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
+                                <div class="col-md-6"></div>
+                                <a href="" class="btn btn-primary col-md-1" data-toggle="modal" data-target="#createModal">Tambah data</a>
                             </div>
-                        </span>
+                        </div>
                         <table class="table table-hover">
                             <thead class="bg-primary text-light">
                                 <tr>
@@ -42,7 +44,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createModalLabel">Kunci Jawaban</h5>
+                    <h5 class="modal-title" id="createModalLabel">Kunci Jawaban SD</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -50,20 +52,32 @@
                 <form class="needs-validation" method="POST" action="<?= base_url('KunciJawabanSD'); ?>" novalidate>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="inputKelas">Pilih Paket Soal</label>
-                            <select id="inputKelas" class="form-control" name="nama_paket_sd" required>
+                            <label for="no_soal">Pilih Paket Soal</label>
+                            <select id="no_soal" class="form-control" name="nama_paket_sd" required>
                                 <option selected value="">Pilih..</option>
                                 <?php foreach ($paket as $t) : ?>
-                                    <option value="<?= $t['id_paket_latihan_sd']; ?>"><?= $t['nama_paket_sd']; ?></option>
+                                    <option value="<?= $t['id_paket_latihan_sd']; ?>"><?= $t['nama_paket_sd'] . " : " . $t['nama_subtema']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="invalid-feedback">
-                                Tolong Pilih Salah Satu Tema
+                                Tolong Pilih Salah Satu paket soal
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputNameTheme">Jawaban Benar</label>
-                            <input type="text" class="form-control" id="exampleInputSubNameTheme" placeholder="Masukkan Nama SubTema" name="paket_soal" required>
+                            <label for="no_soal_sd">Pilih Nomer Soal</label>
+                            <select id="no_soal_sd" class="form-control" name="no_soal" required>
+                                <option selected value="">Pilih..</option>
+                                <?php foreach ($no_soal as $t) : ?>
+                                    <option value="<?= $t['id_no_soal']; ?>"><?= $t['no_soal']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <div class="invalid-feedback">
+                                Tolong Pilih Salah Satu nomer soal
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jawaban_benar">Jawaban Benar</label>
+                            <input type="text" class="form-control" id="jawaban_benar" placeholder="Masukkan Jawaban Benar" name="jawaban_benar" required>
                             <div class="invalid-feedback">
                                 Data Tidak Boleh Kosong
                             </div>
