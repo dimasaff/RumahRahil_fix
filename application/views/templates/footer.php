@@ -92,7 +92,7 @@
         let a = document.getElementById('sortMapel').value;
         bab(a);
     }
-
+    
     function actionSoal() {
         let a = document.getElementById('sortPaket').value;
         soal(a);
