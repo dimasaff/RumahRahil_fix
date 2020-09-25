@@ -26,4 +26,8 @@ class Kunci_latihan_model_api extends CI_Model
         $this->db->update('tb_kunci_jawaban_latihan', $data, ['id_kunci_jawaban_latihan' => $user]);
         return $this->db->affected_rows();
     }
+    public function getKunciSMP()
+    {
+        return $this->db->query("SELECT*FROM tb_kunci_jawaban_latihan WHERE id_kunci_jawaban_latihan > 0")->result_array();
+    }
 }

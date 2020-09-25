@@ -4,7 +4,7 @@
             <div class="row no-gutters">
                 <div class="col-md-12">
                     <div class="card-body">
-                        <h1 class="text-center">Mapel</h1>
+                        <h1 class="text-center">Soal</h1>
                         <div class="col-lg">
                             <?= $this->session->flashdata('message'); ?>
                         </div>
