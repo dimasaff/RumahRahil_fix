@@ -14,17 +14,15 @@ class Bab_model_api extends CI_Model
     public function getBabJoinJurusan($kelasId = null)
     {
         if ($kelasId === null) {
-            return $this->db->query("SELECT tb_bab_latihan.id_bab_latihan, tb_bab_latihan.nama_bab, tb_jurusan.id_jurusan, tb_jurusan.nama_jurusan, tb_jenjang.id_jenjang ,tb_jenjang.nama_jenjang, tb_kelas.id_kelas ,tb_kelas.nama_kelas, tb_mapel.id_mapel ,tb_mapel.nama_mapel 
-                                        FROM tb_jurusan 
-                                        JOIN tb_bab_latihan ON tb_jurusan.id_jurusan = tb_bab_latihan.jurusan_id
-                                        JOIN tb_mapel ON tb_mapel.id_mapel = tb_bab_latihan.mapel_id
+            return $this->db->query("SELECT tb_bab_latihan.id_bab_latihan, tb_bab_latihan.nama_bab, tb_mapel.id_mapel ,tb_mapel.nama_mapel , tb_jenjang.id_jenjang , tb_jenjang.nama_jenjang, tb_kelas.id_kelas ,tb_kelas.nama_kelas 
+                                        FROM tb_mapel 
+                                        JOIN tb_bab_latihan ON tb_mapel.id_mapel = tb_bab_latihan.mapel_id
                                         JOIN tb_jenjang ON tb_jenjang.id_jenjang = tb_bab_latihan.jenjang_id
                                         JOIN tb_kelas ON tb_kelas.id_kelas = tb_bab_latihan.kelas_id")->result_array();
         } else {
-            return $this->db->query("SELECT tb_bab_latihan.id_bab_latihan, tb_bab_latihan.nama_bab, tb_jurusan.id_jurusan, tb_jurusan.nama_jurusan, tb_jenjang.id_jenjang ,tb_jenjang.nama_jenjang, tb_kelas.id_kelas ,tb_kelas.nama_kelas, tb_mapel.id_mapel ,tb_mapel.nama_mapel 
-                                        FROM tb_jurusan 
-                                        JOIN tb_bab_latihan ON tb_jurusan.id_jurusan = tb_bab_latihan.jurusan_id
-                                        JOIN tb_mapel ON tb_mapel.id_mapel = tb_bab_latihan.mapel_id
+            return $this->db->query("SELECT tb_bab_latihan.id_bab_latihan, tb_bab_latihan.nama_bab, tb_mapel.id_mapel ,tb_mapel.nama_mapel , tb_jenjang.id_jenjang ,tb_jenjang.nama_jenjang, tb_kelas.id_kelas ,tb_kelas.nama_kelas 
+                                        FROM tb_mapel 
+                                        JOIN tb_bab_latihan ON tb_mapel.id_mapel = tb_bab_latihan.mapel_id
                                         JOIN tb_jenjang ON tb_jenjang.id_jenjang = tb_bab_latihan.jenjang_id
                                         JOIN tb_kelas ON tb_kelas.id_kelas = tb_bab_latihan.kelas_id
                                         WHERE tb_bab_latihan.jurusan_id = $kelasId")->result_array();

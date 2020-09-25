@@ -26,4 +26,8 @@ class Paket_latihan_model_api extends CI_Model
         $this->db->update('tb_paket_latihan', $data, ['id_paket_latihan' => $user]);
         return $this->db->affected_rows();
     }
+    public function getPaketSMP()
+    {
+        return $this->db->query("SELECT*FROM tb_paket_latihan WHERE id_paket_latihan > 0")->result_array();
+    }
 }

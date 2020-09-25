@@ -2,8 +2,8 @@
 <?php foreach ($bab as $b) : ?>
     <tr>
         <th scope="row"><?= $i; ?></th>
-        <td>Jurusan <?= $b['nama_jurusan']; ?></td>
-        <td><?= $b['nama_mapel']; ?></td>
+        <td>Mapel <?= $b['nama_mapel']; ?></td>
+        
         <td><?= $b['nama_jenjang']; ?></td>
         <td><?= $b['nama_kelas']; ?></td>
         <td>
@@ -25,17 +25,6 @@
                 </div>
                 <form class="needs-validation" method="POST" action="<?= base_url('bab/updateBab/') . $bb['id_bab_latihan']; ?>" novalidate>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="inputJurusan">Jurusan</label>
-                            <select id="inputJurusan" class="form-control" name="jurusan" required>
-                                <option value="<?= $bb['jurusan_id']; ?>" selected>SD <?= $tm['nama_jurusan']; ?></option>
-                                <?php foreach ($jurusan as $t) : ?>
-                                    <option value="<?= $t['id_jurusan']; ?>">SD <?= $t['nama_jurusan']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <div class="invalid-feedback">
-                                Tolong Pilih Salah Satu Jurusan
-                            </div>
                         <div class="form-group">
                             <label for="inputMapel">Mapel</label>
                             <select id="inputMapel" class="form-control" name="mapel" required>
