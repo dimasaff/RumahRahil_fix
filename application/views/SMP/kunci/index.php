@@ -23,7 +23,6 @@
                                     <th scope="col">#</th>
                                     
                                     <th scope="col">Nama Paket</th>
-                                    <th scope="col">Soal</th>
                                     <th scope="col">Jawaban</th>
                                     
                                     <th scope="col">Action</th>
