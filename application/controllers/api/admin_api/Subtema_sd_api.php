@@ -9,25 +9,25 @@ require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
 // extends class dari REST_Controller
-class User_api extends REST_Controller
+class Subsubtema_sd_api extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Admin_model_api/User_model_api', 'api');
+        $this->load->model('Admin_api_model/Subsubtema_model_api', 'api');
     }
     public function index_get()
     {
-        $user = $this->get('id_user');
-        if ($user === null) {
-            $getuser = $this->api->getUser();
+        $subtema = $this->get('id_subtema_sd');
+        if ($subtema === null) {
+            $getsubtema = $this->api->getSubtema();
         } else {
-            $getuser = $this->api->getUser($user);
+            $getsubtema = $this->api->getSubtema($subtema);
         }
-        if ($getuser) {
+        if ($getsubtema) {
             $this->response([
                 'status' => true,
-                'data' => $getuser
+                'data' => $getsubtema
 
             ], REST_Controller::HTTP_OK);
         } else {
@@ -40,15 +40,15 @@ class User_api extends REST_Controller
 
     public function index_delete()
     {
-        $user = $this->delete('id_user');
+        $subtema = $this->delete('id_subtema_sd');
 
-        if (!$user) {
+        if (!$subtema) {
             $this->response([
                 'status' => false,
                 'message' => 'provide an id'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->api->deleteUser($user) > 0) {
+            if ($this->api->deleteSubtema($subtema) > 0) {
                 $this->response([
                     'status' => true,
                     'message' => 'deleted success'
@@ -65,22 +65,15 @@ class User_api extends REST_Controller
     public function index_post()
     {
         $data = [
-            'role_id' => $this->post('role_id'),
-            'jurusan_id' => $this->post('jurusan_id'),
-            'mapel_id' => $this->post('mapel_id'),
-            'jenjang_id' => $this->post('jenjang_id'),
-            'kelas_id' => $this->post('kelas_id'),
-            'nama' => $this->post('nama'),
-            'alamat' => $this->post('alamat'),
-            'email' => $this->post('email'),
-            'password' => password_hash($this->post('password'), PASSWORD_DEFAULT),
-            'foto_profile' => $this->post('foto_profile'),
-            'asal_sekolah' => $this->post('asal_sekolah')
+            'id_subtema_sd' => $this->post('id_subtema_sd'),
+            'tema_sd_id' => $this->post('tema_sd_id'),
+            'nama_subtema' => $this->post('nama_subtema')
+
         ];
-        if ($this->api->createUser($data) > 0) {
+        if ($this->api->createSubtema($data) > 0) {
             $this->response([
                 'status' => true,
-                'message' => 'new user has been created'
+                'message' => 'new data has been created'
             ], REST_Controller::HTTP_CREATED);
         } else {
             $this->response([
@@ -92,21 +85,13 @@ class User_api extends REST_Controller
 
     public function index_put()
     {
-        $user = $this->put('id_user');
+        $subtema = $this->put('id_subtema_sd');
         $data = [
-            'role_id' => $this->put('role_id'),
-            'jurusan_id' => $this->put('jurusan_id'),
-            'mapel_id' => $this->put('mapel_id'),
-            'jenjang_id' => $this->put('jenjang_id'),
-            'kelas_id' => $this->put('kelas_id'),
-            'nama' => $this->put('nama'),
-            'alamat' => $this->put('alamat'),
-            'email' => $this->put('email'),
-            'password' => password_hash($this->put('password'), PASSWORD_DEFAULT),
-            'foto_profile' => $this->put('foto_profile'),
-            'asal_sekolah' => $this->put('asal_sekolah')
+            'id_subtema_sd' => $this->put('id_subtema_sd'),
+            'tema_sd_id' => $this->put('tema_sd_id'),
+            'nama_subtema' => $this->put('nama_subtema')
         ];
-        if ($this->api->updateUser($data, $user) > 0) {
+        if ($this->api->updateSubtema($data, $subtema) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'update success'

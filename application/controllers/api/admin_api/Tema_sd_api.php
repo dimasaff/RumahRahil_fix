@@ -9,25 +9,25 @@ require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
 // extends class dari REST_Controller
-class User_api extends REST_Controller
+class Tema_sd_api extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Admin_model_api/User_model_api', 'api');
+        $this->load->model('Admin_api_model/Tema_model_api', 'api');
     }
     public function index_get()
     {
-        $user = $this->get('id_user');
-        if ($user === null) {
-            $getuser = $this->api->getUser();
+        $tema = $this->get('id_tema_sd');
+        if ($tema === null) {
+            $gettema = $this->api->getTema();
         } else {
-            $getuser = $this->api->getUser($user);
+            $gettema = $this->api->getTema($tema);
         }
-        if ($getuser) {
+        if ($gettema) {
             $this->response([
                 'status' => true,
-                'data' => $getuser
+                'data' => $gettema
 
             ], REST_Controller::HTTP_OK);
         } else {
@@ -40,15 +40,15 @@ class User_api extends REST_Controller
 
     public function index_delete()
     {
-        $user = $this->delete('id_user');
+        $tema = $this->delete('id_tema_sd');
 
-        if (!$user) {
+        if (!$tema) {
             $this->response([
                 'status' => false,
                 'message' => 'provide an id'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->api->deleteUser($user) > 0) {
+            if ($this->api->deleteTema($tema) > 0) {
                 $this->response([
                     'status' => true,
                     'message' => 'deleted success'
@@ -65,22 +65,15 @@ class User_api extends REST_Controller
     public function index_post()
     {
         $data = [
-            'role_id' => $this->post('role_id'),
-            'jurusan_id' => $this->post('jurusan_id'),
-            'mapel_id' => $this->post('mapel_id'),
-            'jenjang_id' => $this->post('jenjang_id'),
+            'id_tema_sd' => $this->post('id_tema_sd'),
             'kelas_id' => $this->post('kelas_id'),
-            'nama' => $this->post('nama'),
-            'alamat' => $this->post('alamat'),
-            'email' => $this->post('email'),
-            'password' => password_hash($this->post('password'), PASSWORD_DEFAULT),
-            'foto_profile' => $this->post('foto_profile'),
-            'asal_sekolah' => $this->post('asal_sekolah')
+            'nama_tema' => $this->post('nama_tema')
+
         ];
-        if ($this->api->createUser($data) > 0) {
+        if ($this->api->createTema($data) > 0) {
             $this->response([
                 'status' => true,
-                'message' => 'new user has been created'
+                'message' => 'new data has been created'
             ], REST_Controller::HTTP_CREATED);
         } else {
             $this->response([
@@ -92,21 +85,13 @@ class User_api extends REST_Controller
 
     public function index_put()
     {
-        $user = $this->put('id_user');
+        $tema = $this->put('id_tema_sd');
         $data = [
-            'role_id' => $this->put('role_id'),
-            'jurusan_id' => $this->put('jurusan_id'),
-            'mapel_id' => $this->put('mapel_id'),
-            'jenjang_id' => $this->put('jenjang_id'),
+            'id_tema_sd' => $this->put('id_tema_sd'),
             'kelas_id' => $this->put('kelas_id'),
-            'nama' => $this->put('nama'),
-            'alamat' => $this->put('alamat'),
-            'email' => $this->put('email'),
-            'password' => password_hash($this->put('password'), PASSWORD_DEFAULT),
-            'foto_profile' => $this->put('foto_profile'),
-            'asal_sekolah' => $this->put('asal_sekolah')
+            'nama_tema' => $this->put('nama_tema')
         ];
-        if ($this->api->updateUser($data, $user) > 0) {
+        if ($this->api->updateTema($data, $tema) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'update success'
