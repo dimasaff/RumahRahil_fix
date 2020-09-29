@@ -46,7 +46,7 @@
                 <a class="collapse-item" href="<?= base_url('Soal/PaketSMP/'); ?>">Paket</a>
                 <a class="collapse-item" href="<?= base_url('Soal/KunciSMP/'); ?>">Kunci Jawaban</a>
                 <a class="collapse-item" href="<?= base_url('Soal/SoalSMP/'); ?>">Soal</a>
-                <a class="collapse-item" href="progress-bar.html">Option Jawaban</a>
+                <a class="collapse-item" href="<?= base_url('Soal/JawabanSMP/'); ?>">Option Jawaban</a>
             </div>
         </div>
     </li>

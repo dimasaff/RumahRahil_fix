@@ -2,7 +2,7 @@
 <?php foreach ($kunci as $st) : ?>
     <tr>
         <th scope="row"><?= $i; ?></th>
-        <td><?= $st['nama_paket_latihan']; ?></td>
+        <td><?= $st['nama_paket']; ?></td>
         <td><?= $st['jawaban_benar']; ?></td>
         <td>
             <a href="" data-toggle="modal" data-target="#updateModal<?= $st['id_kunci_jawaban_latihan']; ?>" class="btn btn-warning px-3"><i class="fas fa-user-edit" aria-hidden="true"></i></a>

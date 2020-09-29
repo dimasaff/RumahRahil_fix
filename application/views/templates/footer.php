@@ -111,6 +111,12 @@
 
     }
 
+    function actionJawaban() {
+        let a = document.getElementById('sortSoal').value;
+        jawaban(a);
+
+    }
+
     function tema(a) {
         var xhttp;
         xhttp = new XMLHttpRequest();
@@ -205,6 +211,18 @@
             }
         };
         xhttp.open("POST", "<?= base_url('paket/tablePaket/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function jawaban(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabeljawaban").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('jawaban/tableJawaban/'); ?>" + a, true);
         xhttp.send();
     }
 </script>
