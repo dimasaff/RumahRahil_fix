@@ -17,7 +17,6 @@ class Bab extends CI_Controller
     {
         $email = $this->session->userdata('email');
         $data['user'] = $this->user->getUserWhereEmail($email);
-        
         $data['mapel'] = $this->mapel->getMapelSMP();
         $data['jenjang'] = $this->jenjang->getJenjangSMP();
         $data['kelas'] = $this->kelas->getKelasSMP();

@@ -43,6 +43,6 @@ class Mapel_model_api extends CI_Model
 
     public function getMapelSMP()
     {
-        return $this->db->query("SELECT*FROM tb_mapel WHERE id_mapel > 7")->result_array();
+        return $this->db->query("SELECT*FROM tb_mapel WHERE id_mapel > 0")->result_array();
     }
 }

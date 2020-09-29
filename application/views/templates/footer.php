@@ -99,6 +99,18 @@
 
     }
 
+    function actionKunci() {
+        let a = document.getElementById('sortPaket').value;
+        kunci(a);
+
+    }
+
+    function actionPaket() {
+        let a = document.getElementById('sortBab').value;
+        paket(a);
+
+    }
+
     function tema(a) {
         var xhttp;
         xhttp = new XMLHttpRequest();
@@ -169,6 +181,30 @@
             }
         };
         xhttp.open("POST", "<?= base_url('soal/tableSoal/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function kunci(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelkunci").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('kunci/tableKunci/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function paket(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelpaket").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('paket/tablePaket/'); ?>" + a, true);
         xhttp.send();
     }
 </script>

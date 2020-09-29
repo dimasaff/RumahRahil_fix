@@ -48,7 +48,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" id="form-theme" novalidate method="POST" action="<?= base_url('soal'); ?>">
+                <form class="needs-validation" id="form-theme" novalidate method="POST" action="<?= base_url('Soal/SoalSMP/'); ?>">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="inputPaket">Paket</label>
