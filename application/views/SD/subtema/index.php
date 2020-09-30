@@ -8,9 +8,9 @@
                         <div class="col-lg">
                             <?= $this->session->flashdata('message'); ?>
                         </div>
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
                         <span>
                             <div class="col-md-5 mt-2 mb-2">
+                                <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
                                 <select id="sortTema" class="form-control" name="sortTema" required onchange="actionSubTemaSD()">
                                     <option selected value="all">Tampilkan Semua</option>..</option>
                                     <?php foreach ($tema as $t) : ?>
@@ -41,15 +41,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createModalLabel">Input Tema</h5>
+                    <h5 class="modal-title" id="createModalLabel">Input SubTema</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" method="POST" action="<?= base_url('Subtema'); ?>" novalidate>
+                <form class="needs-validation" method="POST" action="<?= base_url('Sd_Controllers/Subtema'); ?>" novalidate>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="inputKelas">SubTema</label>
+                            <label for="inputKelas">Tema</label>
                             <select id="inputKelas" class="form-control" name="nama_tema" required>
                                 <option selected value="">Pilih..</option>
                                 <?php foreach ($tema as $t) : ?>

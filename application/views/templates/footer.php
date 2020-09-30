@@ -66,15 +66,54 @@
             });
         }, false);
     })();
+    $(document).ready(function() {
+        $('.custom-file-input').on('change', function() {
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });
+    });
+
+
 
     function actionTemaSD() {
         let a = document.getElementById('sortKelas').value;
-        tema(a);
+        temaSd(a);
     }
 
     function actionSubTemaSD() {
         let a = document.getElementById('sortTema').value;
-        subtema(a);
+        subtemaSd(a);
+    }
+
+    function actionPaketSD() {
+        let a = document.getElementById('sortSubtema').value;
+        paketSd(a);
+    }
+
+    function actionKunciSD() {
+        let a = document.getElementById('sortPaketSd').value;
+        kunciSd(a);
+    }
+
+    function inputKunciSD() {
+        let a = document.getElementById('nama_paket_sd').value;
+        pilihKunciSd(a);
+    }
+
+    function actionSoalSD() {
+        let a = document.getElementById('sortSoalSd').value;
+        sortSoalSD(a);
+    }
+
+    function inputNoSoalSd() {
+        let a = document.getElementById('no_soal_sd').value;
+        let b = document.getElementById('nama_paket_sd').value;
+        pilihJawabanBenar(a, b);
+    }
+
+    function actionSoal() {
+        let a = document.getElementById('sortPaket').value;
+        soal(a);
     }
 
     function actionMapel() {
@@ -82,21 +121,9 @@
         mapel(a);
     }
 
-
-    function actionPaketSD() {
-        let a = document.getElementById('sortSubtema').value;
-        paket(a);
-    }
-
     function actionBab() {
         let a = document.getElementById('sortMapel').value;
         bab(a);
-    }
-    
-    function actionSoal() {
-        let a = document.getElementById('sortPaket').value;
-        soal(a);
-
     }
 
     function actionKunci() {
@@ -117,7 +144,7 @@
 
     }
 
-    function tema(a) {
+    function temaSd(a) {
         var xhttp;
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -125,11 +152,11 @@
                 document.getElementById("tabeltema").innerHTML = this.responseText;
             }
         };
-        xhttp.open("POST", "<?= base_url('tema/tableTema/'); ?>" + a, true);
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/tema/tableTema/'); ?>" + a, true);
         xhttp.send();
     }
 
-    function subtema(a) {
+    function subtemaSd(a) {
         var xhttp;
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -137,8 +164,82 @@
                 document.getElementById("tabelsubtema").innerHTML = this.responseText;
             }
         };
-        xhttp.open("POST", "<?= base_url('subtema/tableSubtema/'); ?>" + a, true);
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/subtema/tableSubtema/'); ?>" + a, true);
         xhttp.send();
+    }
+
+    function paketSd(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelpaketsd").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/PaketSoalSd/tablePaketsd/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function kunciSd(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelKunciSd").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/KunciJawabanSD/tableKuncisd/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function soalSd(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelSoalSd").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/SoalSD/tableSoalsd/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function pilihKunciSd(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("no_soal_sd").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/SoalSd/selectNoSoal/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function pilihJawabanBenar(a, b) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("jawaban_benar").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/SoalSd/selectJawabanBenar/'); ?>" + a + "/" + b, true);
+        xhttp.send();
+
+    }
+
+    function sortSoalSD(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelSoalSd").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/SoalSd/tableSoalsd/'); ?>" + a, true);
+        xhttp.send();
+
     }
 
     function mapel(a) {
@@ -150,19 +251,6 @@
             }
         };
         xhttp.open("POST", "<?= base_url('mapel/tableMapel/'); ?>" + a, true);
-        xhttp.send();
-    }
-
-
-    function paket(a) {
-        var xhttp;
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("tabelpaketsd").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("POST", "<?= base_url('PaketSoalSd/tablePaketsd/'); ?>" + a, true);
         xhttp.send();
     }
 
@@ -225,6 +313,43 @@
         xhttp.open("POST", "<?= base_url('jawaban/tableJawaban/'); ?>" + a, true);
         xhttp.send();
     }
+    <?php foreach ($soal as $s) : ?>
+
+        function inputUpdateKunciSD<?= $s['id_soal_latihan_sd']; ?>() {
+            let a = document.getElementById('update_nama_paket_sd_<?= $s['id_soal_latihan_sd']; ?>').value;
+            updatePilihKunciSd<?= $s['id_soal_latihan_sd']; ?>(a);
+        }
+
+        function inputUpdateNoSoalSd<?= $s['id_soal_latihan_sd']; ?>() {
+            let a = document.getElementById('update_no_soal_sd_<?= $s['id_soal_latihan_sd']; ?>').value;
+            let b = document.getElementById('update_nama_paket_sd_<?= $s['id_soal_latihan_sd']; ?>').value;
+            updatePilihJawabanBenar<?= $s['id_soal_latihan_sd']; ?>(a, b);
+        }
+
+        function updatePilihKunciSd<?= $s['id_soal_latihan_sd']; ?>(a) {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("update_no_soal_sd_<?= $s['id_soal_latihan_sd']; ?>").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "<?= base_url('Sd_Controllers/SoalSd/selectNoSoal/'); ?>" + a, true);
+            xhttp.send();
+        }
+
+        function updatePilihJawabanBenar<?= $s['id_soal_latihan_sd']; ?>(a, b) {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("update_jawaban_benar_<?= $s['id_soal_latihan_sd']; ?>").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "<?= base_url('Sd_Controllers/SoalSd/selectJawabanBenar/'); ?>" + a + "/" + b, true);
+            xhttp.send();
+        }
+    <?php endforeach; ?>
 </script>
 
 </body>

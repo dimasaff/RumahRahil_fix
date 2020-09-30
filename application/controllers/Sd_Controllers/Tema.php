@@ -30,7 +30,7 @@ class Tema extends CI_Controller
             ];
             $this->tema->createTema($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah data Berhasil</div>');
-            redirect('Tema');
+            redirect('Sd_Controllers/Tema');
         }
     }
 
@@ -42,7 +42,7 @@ class Tema extends CI_Controller
         ];
         $this->tema->updateTema($data, $id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update data Berhasil</div>');
-        redirect('Tema');
+        redirect('Sd_Controllers/Tema');
     }
 
     public function tableTema($val)
@@ -58,6 +58,6 @@ class Tema extends CI_Controller
     {
         $this->tema->deleteTema($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data Berhasil</div>');
-        redirect('Tema');
+        redirect('Sd_Controllers/Tema');
     }
 }

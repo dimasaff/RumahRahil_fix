@@ -2,7 +2,7 @@
 <?php foreach ($tema as $t) : ?>
     <tr>
         <th scope="row"><?= $i; ?></th>
-        <td>Kelas <?= $t['nama_kelas']; ?></td>
+        <td><?= $t['nama_kelas']; ?></td>
         <td><?= $t['nama_tema']; ?></td>
         <td>
             <a href="" data-toggle="modal" data-target="#updateModal<?= $t['id_tema_sd']; ?>" class="btn btn-warning px-3"><i class="fas fa-user-edit" aria-hidden="true"></i></a>
@@ -21,14 +21,14 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" method="POST" action="<?= base_url('tema/updateTheme/') . $tm['id_tema_sd']; ?>" novalidate>
+                <form class="needs-validation" method="POST" action="<?= base_url('Sd_Controllers/tema/updateTheme/') . $tm['id_tema_sd']; ?>" novalidate>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="inputKelas">Kelas</label>
                             <select id="inputKelas" class="form-control" name="kelas" required>
-                                <option value="<?= $tm['kelas_id']; ?>" selected>SD <?= $tm['nama_kelas']; ?></option>
+                                <option value="<?= $tm['kelas_id']; ?>" selected><?= $tm['nama_kelas']; ?></option>
                                 <?php foreach ($kelas as $t) : ?>
-                                    <option value="<?= $t['id_kelas']; ?>">SD <?= $t['nama_kelas']; ?></option>
+                                    <option value="<?= $t['id_kelas']; ?>"><?= $t['nama_kelas']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="invalid-feedback">
@@ -57,7 +57,7 @@
     <div class="modal fade" id="deleteModal<?= $tm['id_tema_sd']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel<?= $tm['id_tema_sd']; ?>" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form method="POST" action="<?= base_url('tema/deleteTheme/') . $tm['id_tema_sd']; ?>">
+                <form method="POST" action="<?= base_url('Sd_Controllers/tema/deleteTheme/') . $tm['id_tema_sd']; ?>">
                     <div class="modal-header">
                         <h5 class="modal-title" id="deleteModalLabel<?= $tm['id_tema_sd']; ?>">Hapus Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

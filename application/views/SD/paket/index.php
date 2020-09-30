@@ -8,17 +8,15 @@
                         <div class="col-lg">
                             <?= $this->session->flashdata('message'); ?>
                         </div>
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
-                        <span>
-                            <div class="col-md-5 mt-2 mb-2">
-                                <select id="sortSubtema" class="form-control" name="sortSubtema" required onchange="actionPaketSD()">
-                                    <option selected value="all">Tampilkan Semua</option>..</option>
-                                    <?php foreach ($subtema as $t) : ?>
-                                        <option value="<?= $t['id_subtema_sd']; ?>"><?= $t['nama_subtema']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </span>
+                        <div class="col-md-5 mt-2 mb-2">
+                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
+                            <select id="sortSubtema" class="form-control" name="sortSubtema" required onchange="actionPaketSD()">
+                                <option selected value="all">Tampilkan Semua</option>..</option>
+                                <?php foreach ($subtema as $t) : ?>
+                                    <option value="<?= $t['id_subtema_sd']; ?>"><?= $t['nama_subtema']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                         <table class="table table-hover">
                             <thead class="bg-primary text-light">
                                 <tr>
@@ -46,7 +44,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" method="POST" action="<?= base_url('PaketSoalSd'); ?>" novalidate>
+                <form class="needs-validation" method="POST" action="<?= base_url('Sd_Controllers/PaketSoalSd'); ?>" novalidate>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="inputKelas">Pilih SubTema</label>

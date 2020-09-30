@@ -30,7 +30,7 @@ class PaketSoalSd extends CI_Controller
             ];
             $this->paket->createPaketsd($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah data Berhasil</div>');
-            redirect('PaketSoalSd');
+            redirect('Sd_Controllers/PaketSoalSd');
         }
     }
     public function updatePaketsd($id)
@@ -41,13 +41,13 @@ class PaketSoalSd extends CI_Controller
         ];
         $this->paket->updatePaketsd($data, $id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Edit data Berhasil</div>');
-        redirect('PaketSoalSd');
+        redirect('Sd_Controllers/PaketSoalSd');
     }
     function deletePaketsd($id)
     {
         $this->paket->deletePaketsd($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data Berhasil</div>');
-        redirect('PaketSoalSd');
+        redirect('Sd_Controllers/PaketSoalSd');
     }
     public function tablePaketsd($val)
     {

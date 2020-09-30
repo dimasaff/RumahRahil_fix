@@ -41,7 +41,6 @@
                                             <option value="<?= $ju['id_jurusan']; ?>"><?= $ju['nama_jurusan']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
-
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="mapel_id">Mata Pelajaran</label>

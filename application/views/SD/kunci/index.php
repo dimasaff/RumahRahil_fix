@@ -8,18 +8,14 @@
                         <div class="col-lg">
                             <?= $this->session->flashdata('message'); ?>
                         </div>
-                        <div class="col-md-12 mt-2 mb-2">
-                            <div class="row mt-5">
-                                <label for="sortPaketSD" class="col-md-2">Tampilkan Kunci Jawaban Soal : </label>
-                                <select id="sortPaketSd" class="form-control col-md-3" name="sortPaketSd" required onchange="actionKunciSD()">
-                                    <option selected>Pilih Paket Sesuai Subtema</option>..</option>
-                                    <?php foreach ($paket as $t) : ?>
-                                        <option value="<?= $t['id_paket_latihan_sd']; ?>"><?= $t['nama_paket_sd'] . " : " . $t['nama_subtema']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <div class="col-md-6"></div>
-                                <a href="" class="btn btn-primary col-md-1" data-toggle="modal" data-target="#createModal">Tambah data</a>
-                            </div>
+                        <div class="col-md-5 mt-2 mb-2">
+                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
+                            <select id="sortPaketSd" class="form-control " name="sortPaketSd" required onchange="actionKunciSD()">
+                                <option selected>Pilih Paket Sesuai Subtema</option>..</option>
+                                <?php foreach ($paket as $t) : ?>
+                                    <option value="<?= $t['id_paket_latihan_sd']; ?>"><?= $t['nama_paket_sd'] . " : " . $t['nama_subtema']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <table class="table table-hover">
                             <thead class="bg-primary text-light">
@@ -31,8 +27,8 @@
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="tabelpaketsd">
-
+                            <tbody id="tabelKunciSd">
+                                <?php $this->load->view('SD/kunci/table-kunci', $kunci); ?>
                             </tbody>
                         </table>
                     </div>
@@ -49,7 +45,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" method="POST" action="<?= base_url('KunciJawabanSD'); ?>" novalidate>
+                <form class="needs-validation" method="POST" action="<?= base_url('Sd_Controllers/KunciJawabanSD'); ?>" novalidate>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="no_soal">Pilih Paket Soal</label>
