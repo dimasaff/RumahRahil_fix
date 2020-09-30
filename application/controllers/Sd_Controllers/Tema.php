@@ -9,12 +9,14 @@ class Tema extends CI_Controller
         $this->load->model('Admin_api_model/User_model_api', 'user');
         $this->load->model('Admin_api_model/Kelas_model_api', 'kelas');
         $this->load->model('Admin_api_model/Tema_model_api', 'tema');
+        $this->load->model('Soal_api_model/Soal_sd_model_api', 'soal');
     }
     public function index()
     {
         $email = $this->session->userdata('email');
         $data['user'] = $this->user->getUserWhereEmail($email);
         $data['kelas'] = $this->kelas->getKelasSD();
+        $data['soal'] = $this->soal->getSoalSdJoinWithAllItem();
         $data['tema']['tema'] = $this->tema->getTemaJoinKelas();
         $data['title'] = 'Tema';
         if ($this->input->post('kelas') == null) {
@@ -22,7 +24,7 @@ class Tema extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('SD/tema/index', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer', $data);
         } else {
             $data = [
                 'kelas_id' => $this->input->post('kelas'),

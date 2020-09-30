@@ -10,7 +10,7 @@
                         </div>
                         <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
                         <div class="col-md-5 mt-2 mb-2">
-                            <select id="sortJurusan" class="form-control" required onchange="actionKunci()">
+                            <select id="sortPaket" class="form-control" required onchange="actionKunci()">
                                 <option selected value="all">Tampilkan Semua</option>..</option>
                                 <?php foreach ($paket as $t) : ?>
                                     <option value="<?= $t['id_paket_latihan']; ?>"><?= $t['nama_paket']; ?></option>
@@ -21,11 +21,8 @@
                             <thead class="bg-primary text-light">
                                 <tr>
                                     <th scope="col">#</th>
-                                    
                                     <th scope="col">Nama Paket</th>
-                                    <th scope="col">Soal</th>
                                     <th scope="col">Jawaban</th>
-                                    
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -47,7 +44,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" id="form-theme" novalidate method="POST" action="<?= base_url('kunci'); ?>">
+                <form class="needs-validation" id="form-theme" novalidate method="POST" action="<?= base_url('Soal/KunciSMP/'); ?>">
                     <div class="modal-body">
                         
                         <div class="form-group">
@@ -62,33 +59,10 @@
                                 Tolong Pilih Salah Satu Paket
                             </div>
                             </div>
+                        
                         <div class="form-group">
-                            <label for="inputJenjang">Jenjang</label>
-                            <select id="inputJenjang" class="form-control" name="jenjang" required>
-                                <option value="" selected>Pilih Jenjang....</option>
-                                <?php foreach ($jenjang as $g) : ?>
-                                    <option value="<?= $g['id_jenjang']; ?>"> <?= $g['nama_jenjang']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <div class="invalid-feedback">
-                                Tolong Pilih Salah Satu Jenjang
-                            </div>
-                            </div>
-                        <div class="form-group">
-                            <label for="inputKelas">Kelas</label>
-                            <select id="inputKelas" class="form-control" name="kelas" required>
-                                <option value="" selected>Pilih Kelas....</option>
-                                <?php foreach ($kelas as $ke) : ?>
-                                    <option value="<?= $ke['id_kelas']; ?>"> <?= $ke['nama_kelas']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <div class="invalid-feedback">
-                                Tolong Pilih Salah Satu Kelas
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputNameBab">Nama Bab</label>
-                            <input type="text" class="form-control" id="exampleInputNameBab" placeholder="Masukkan Nama Bab" name="nama_bab" required>
+                            <label for="exampleInputNameKunci">Nama Kunci</label>
+                            <input type="text" class="form-control" id="exampleInputNameKunci" placeholder="Masukkan Nama Kunci" name="nama_bab" required>
                             <div class="invalid-feedback">
                                 Data Tidak Boleh Kosong
                             </div>

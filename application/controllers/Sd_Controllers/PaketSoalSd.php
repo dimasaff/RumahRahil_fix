@@ -9,12 +9,14 @@ class PaketSoalSd extends CI_Controller
         $this->load->model('Admin_api_model/User_model_api', 'user');
         $this->load->model('Admin_api_model/Subtema_model_api', 'Subtema');
         $this->load->model('Paket_api_model/Paket_sd_model_api', 'paket');
+        $this->load->model('Soal_api_model/Soal_sd_model_api', 'soal');
     }
     public function index()
     {
         $email = $this->session->userdata('email');
         $data['user'] = $this->user->getUserWhereEmail($email);
         $data['subtema'] = $this->Subtema->getSubtema();
+        $data['soal'] = $this->soal->getSoalSdJoinWithAllItem();
         $data['paket']['paket'] = $this->paket->getPaketsdJoinSubtema();
         $data['title'] = 'Paket Soal SD';
         if ($this->input->post('nama_subtema') == null) {
@@ -22,7 +24,7 @@ class PaketSoalSd extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('SD/paket/index', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer', $data);
         } else {
             $data = [
                 'subtema_sd_id' => $this->input->post('nama_subtema'),

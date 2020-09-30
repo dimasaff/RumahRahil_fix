@@ -4,16 +4,16 @@
             <div class="row no-gutters">
                 <div class="col-md-12">
                     <div class="card-body">
-                        <h1 class="text-center">Tema</h1>
+                        <h1 class="text-center">Paket</h1>
                         <div class="col-lg">
                             <?= $this->session->flashdata('message'); ?>
                         </div>
+                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
                         <div class="col-md-5 mt-2 mb-2">
-                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
-                            <select id="sortKelas" class="form-control" onchange="actionTemaSD()" required>
+                            <select id="sortBab" class="form-control" required onchange="actionPaket()">
                                 <option selected value="all">Tampilkan Semua</option>..</option>
-                                <?php foreach ($kelas as $t) : ?>
-                                    <option value="<?= $t['id_kelas']; ?>"><?= $t['nama_kelas']; ?></option>
+                                <?php foreach ($bab as $t) : ?>
+                                    <option value="<?= $t['id_bab_latihan']; ?>"><?= $t['nama_bab']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -21,13 +21,13 @@
                             <thead class="bg-primary text-light">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Nama Tingkat</th>
-                                    <th scope="col">Nama Tema</th>
+                                    <th scope="col">Nama Bab</th>
+                                    <th scope="col">Nama Paket</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="tabeltema">
-                                <?php $this->load->view('SD/tema/table-tema', $tema); ?>
+                            <tbody id="tabelpaket">
+                                <?php $this->load->view('SMP/paket/table-paket', $paket); ?>
                             </tbody>
                         </table>
                     </div>
@@ -39,35 +39,35 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createModalLabel">Input Tema</h5>
+                    <h5 class="modal-title" id="createModalLabel">Input Paket</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" id="form-theme" novalidate method="POST" action="<?= base_url('Sd_Controllers/Tema'); ?>">
+                <form class="needs-validation" id="form-theme" novalidate method="POST" action="<?= base_url('Soal/PaketSMP/'); ?>">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="inputKelas">Kelas</label>
-                            <select id="inputKelas" class="form-control" name="kelas" required>
-                                <option value="" selected>Pilih Kelas....</option>
-                                <?php foreach ($kelas as $t) : ?>
-                                    <option value="<?= $t['id_kelas']; ?>"><?= $t['nama_kelas']; ?></option>
+                            <label for="inputBab">Bab</label>
+                            <select id="inputBab" class="form-control" name="bab" required>
+                                <option value="" selected>Pilih Bab....</option>
+                                <?php foreach ($bab as $t) : ?>
+                                    <option value="<?= $t['id_bab_latihan']; ?>"> <?= $t['nama_bab']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="invalid-feedback">
-                                Tolong Pilih Salah Satu Kelas
+                                Tolong Pilih Salah Satu Bab
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputNameTheme">Nama Tema</label>
-                            <input type="text" class="form-control" id="exampleInputNameTheme" placeholder="Masukkan Nama Tema" name="nama_tema" required>
+                            <label for="exampleInputNamePaket">Nama Paket</label>
+                            <input type="text" class="form-control" id="exampleInputNamePaket" placeholder="Masukkan Nama Paket" name="nama_paket" required>
                             <div class="invalid-feedback">
                                 Data Tidak Boleh Kosong
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="btn-save-theme">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="btn-save-mapel">Submit</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>

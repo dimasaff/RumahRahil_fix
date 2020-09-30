@@ -11,6 +11,20 @@ class Paket_latihan_model_api extends CI_Model
         }
     }
 
+    public function getPaketJoinKelas($kelasId = null)
+    {
+        if ($kelasId === null) {
+            return $this->db->query("SELECT tb_paket_latihan.id_paket_latihan, tb_bab_latihan.id_bab_latihan, tb_bab_latihan.nama_bab, tb_paket_latihan.bab_latihan_id,tb_paket_latihan.nama_paket 
+                                        FROM tb_bab_latihan JOIN tb_paket_latihan
+                                        ON tb_bab_latihan.id_bab_latihan = tb_paket_latihan.bab_latihan_id")->result_array();
+        } else {
+            return $this->db->query("SELECT tb_paket_latihan.id_paket_latihan, tb_bab_latihan.id_bab_latihan, tb_bab_latihan.nama_bab, tb_paket_latihan.bab_latihan_id,tb_paket_latihan.nama_paket 
+                                        FROM tb_bab_latihan JOIN tb_paket_latihan
+                                        ON tb_bab_latihan.id_bab_latihan = tb_paket_latihan.bab_latihan_id
+                                        WHERE tb_paket_latihan.bab_latihan_id = $kelasId")->result_array();
+        }
+    }
+
     public function deletePaketlatihan($paketlatihan)
     {
         $this->db->delete('tb_paket_latihan', ['id_paket_latihan' => $paketlatihan]);

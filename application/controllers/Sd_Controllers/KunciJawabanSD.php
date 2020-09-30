@@ -10,12 +10,14 @@ class KunciJawabanSD extends CI_Controller
         $this->load->model('Admin_api_model/Subtema_model_api', 'subtema');
         $this->load->model('Paket_api_model/Paket_sd_model_api', 'paket');
         $this->load->model('Kunci_api_model/Kunci_sd_model_api', 'kunci');
+        $this->load->model('Soal_api_model/Soal_sd_model_api', 'soal');
     }
     public function index()
     {
         $email = $this->session->userdata('email');
         $data['user'] = $this->user->getUserWhereEmail($email);
         $data['paket'] = $this->paket->getPaketsdJoinSubtema();
+        $data['soal'] = $this->soal->getSoalSdJoinWithAllItem();
         $data['no_soal'] = $this->db->get('tb_no_soal')->result_array();
         $data['kunci']['kunci'] = $this->kunci->getKunciSdJoinPaketAndNoSoalOrderASC();
         $data['title'] = 'Kunci Jawaban Soal SD';
@@ -24,7 +26,7 @@ class KunciJawabanSD extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('SD/kunci/index', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer', $data);
         } else {
             $data = [
                 'paket_latihan_sd_id' => $this->input->post('nama_paket_sd'),

@@ -4,16 +4,16 @@
             <div class="row no-gutters">
                 <div class="col-md-12">
                     <div class="card-body">
-                        <h1 class="text-center">Soal</h1>
+                        <h1 class="text-center">Jawaban</h1>
                         <div class="col-lg">
                             <?= $this->session->flashdata('message'); ?>
                         </div>
                         <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
                         <div class="col-md-5 mt-2 mb-2">
-                            <select id="sortPaket" class="form-control" required onchange="actionSoal()">
+                            <select id="sortSoal" class="form-control" required onchange="actionJawaban()">
                                 <option selected value="all">Tampilkan Semua</option>..</option>
-                                <?php foreach ($soal as $t) : ?>
-                                    <option value="<?= $t['id_paket_latihan']; ?>"><?= $t['nama_paket']; ?></option>
+                                <?php foreach ($jawaban as $t) : ?>
+                                    <option value="<?= $t['id_soal_latihan']; ?>"><?= $t['soal_text']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -21,17 +21,16 @@
                             <thead class="bg-primary text-light">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">No Soal</th>
-                                    <th scope="col">Nama Paket</th>
-                                    <th scope="col">Soal Text</th>
-                                    <th scope="col">Soal Gambar</th>
-                                    <th scope="col">Soal Suara</th>
-                                    <th scope="col">Jawaban Benar</th>
+                                    <th scope="col">Soal</th>
+                                    <th scope="col">Option A</th>
+                                    <th scope="col">Option B</th>
+                                    <th scope="col">Option C</th>
+                                    <th scope="col">Option D</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="tabelsoal">
-                                <?php $this->load->view('SMP/soal/table-soal', $soal); ?>
+                                <?php $this->load->view('SMP/jawaban/table-jawaban', $jawaban); ?>
                             </tbody>
                         </table>
                     </div>
@@ -43,50 +42,51 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createModalLabel">Input Soal</h5>
+                    <h5 class="modal-title" id="createModalLabel">Input Jawaban</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" id="form-theme" novalidate method="POST" action="<?= base_url('Soal/SoalSMP/'); ?>">
+                <form class="needs-validation" id="form-theme" novalidate method="POST" action="<?= base_url('Soal/JawabanSMP/'); ?>">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="inputPaket">Paket</label>
-                            <select id="inputPaket" class="form-control" name="paket" required>
-                                <option value="" selected>Pilih Paket....</option>
-                                <?php foreach ($paket as $t) : ?>
-                                    <option value="<?= $t['id_paket_latihan']; ?>"> <?= $t['nama_paket']; ?></option>
+                            <label for="inputSoal">Soal</label>
+                            <select id="inputSoal" class="form-control" name="soal" required>
+                                <option value="" selected>Pilih Soal....</option>
+                                <?php foreach ($soal as $t) : ?>
+                                    <option value="<?= $t['id_soal_latihan']; ?>"> <?= $t['soal_text']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="invalid-feedback">
-                                Tolong Pilih Salah Satu Paket
+                                Tolong Pilih Salah Satu Soal
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputNameText">Soal Text</label>
-                            <input type="text" class="form-control" id="exampleInputNameText" placeholder="Masukkan Soal Text" name="soal_text" required>
+                            <label for="exampleInputNameOptionA">Option A</label>
+                            <input type="text" class="form-control" id="exampleInputNameOptionA" placeholder="Masukkan Option A" name="option_a" required>
                             <div class="invalid-feedback">
                                 Data Tidak Boleh Kosong
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputNameGambar">Soal Gambar</label>
-                            <input type="text" class="form-control" id="exampleInputNameGambar" placeholder="Masukkan Soal Gambar" name="soal_gambar" required>
-                       </div>
-                       <div class="form-group">
-                            <label for="exampleInputNameSuara">Soal Suara</label>
-                            <input type="text" class="form-control" id="exampleInputNameSuara" placeholder="Masukkan Soal Suara" name="soal_suara" required>
+                            <label for="exampleInputNameOptionB">Option B</label>
+                            <input type="text" class="form-control" id="exampleInputNameOptionB" placeholder="Masukkan Option B" name="option_b" required>
+                            <div class="invalid-feedback">
+                                Data Tidak Boleh Kosong
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputJawaban">Jawaban</label>
-                            <select id="inputJawaban" class="form-control" name="jawaban" required>
-                                <option value="" selected>Pilih Jawaban....</option>
-                                <?php foreach ($jawaban as $t) : ?>
-                                    <option value="<?= $t['id_kunci_jawaban_latihan']; ?>"> <?= $t['jawaban_benar']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <label for="exampleInputNameOptionC">Option C</label>
+                            <input type="text" class="form-control" id="exampleInputNameOptionC" placeholder="Masukkan Option C" name="option_c" required>
                             <div class="invalid-feedback">
-                                Input Jawaban Benar
+                                Data Tidak Boleh Kosong
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputNameOptionD">Option D</label>
+                            <input type="text" class="form-control" id="exampleInputNameOptionD" placeholder="Masukkan Option D" name="option_d" required>
+                            <div class="invalid-feedback">
+                                Data Tidak Boleh Kosong
                             </div>
                         </div>
                     </div>

@@ -42,4 +42,8 @@ class Soal_latihan_model_api extends CI_Model
         $this->db->update('tb_soal_latihan', $data, ['id_soal_latihan' => $user]);
         return $this->db->affected_rows();
     }
+    public function getSoalSMP()
+    {
+        return $this->db->query("SELECT*FROM tb_soal_latihan WHERE id_soal_latihan > 0")->result_array();
+    }
 }
