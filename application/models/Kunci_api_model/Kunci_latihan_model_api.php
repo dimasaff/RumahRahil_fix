@@ -11,6 +11,20 @@ class Kunci_latihan_model_api extends CI_Model
         }
     }
 
+    public function getKuncismpJoinKelas($kelasId = null)
+    {
+        if ($kelasId === null) {
+            return $this->db->query("SELECT tb_paket_latihan.id_paket_latihan, tb_kunci_jawaban_latihan.paket_latihan_id, tb_kunci_jawaban_latihan.jawaban_benar 
+                                        FROM tb_paket_latihan JOIN tb_kunci_jawaban_latihan
+                                        ON tb_paket_latihan.id_paket_latihan = tb_kunci_jawaban_latihan.paket_latihan_id")->result_array();
+        } else {
+            return $this->db->query("SELECT tb_paket_latihan.id_paket_latihan, tb_kunci_jawaban_latihan.paket_latihan_id, tb_kunci_jawaban_latihan.jawaban_benar
+                                        FROM tb_paket_latihan JOIN tb_kunci_jawaban_latihan
+                                        ON tb_paket_latihan.id_paket_latihan = tb_kunci_jawaban_latihan.paket_latihan_id
+                                        WHERE tb_kunci_jawaban_latihan.paket_latihan_id = $kelasId")->result_array();
+        }
+    }
+
     public function deleteKuncilatihan($kuncilatihan)
     {
         $this->db->delete('tb_kunci_jawaban_latihan', ['id_kunci_jawaban_latihan' => $kuncilatihan]);

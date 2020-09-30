@@ -3,7 +3,6 @@
     <tr>
         <th scope="row"><?= $i; ?></th>
         <td>Mapel <?= $b['nama_mapel']; ?></td>
-        
         <td><?= $b['nama_jenjang']; ?></td>
         <td><?= $b['nama_kelas']; ?></td>
         <td>

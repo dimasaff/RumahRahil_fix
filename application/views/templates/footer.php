@@ -73,6 +73,8 @@
         });
     });
 
+
+
     function actionTemaSD() {
         let a = document.getElementById('sortKelas').value;
         temaSd(a);
@@ -98,8 +100,6 @@
         pilihKunciSd(a);
     }
 
-
-
     function actionSoalSD() {
         let a = document.getElementById('sortSoalSd').value;
         sortSoalSD(a);
@@ -109,11 +109,6 @@
         let a = document.getElementById('no_soal_sd').value;
         let b = document.getElementById('nama_paket_sd').value;
         pilihJawabanBenar(a, b);
-    }
-
-    function actionBab() {
-        let a = document.getElementById('sortMapel').value;
-        bab(a);
     }
 
     function actionSoal() {
@@ -126,6 +121,28 @@
         mapel(a);
     }
 
+    function actionBab() {
+        let a = document.getElementById('sortMapel').value;
+        bab(a);
+    }
+
+    function actionKunci() {
+        let a = document.getElementById('sortPaket').value;
+        kunci(a);
+
+    }
+
+    function actionPaket() {
+        let a = document.getElementById('sortBab').value;
+        paket(a);
+
+    }
+
+    function actionJawaban() {
+        let a = document.getElementById('sortSoal').value;
+        jawaban(a);
+
+    }
 
     function temaSd(a) {
         var xhttp;
@@ -225,6 +242,18 @@
 
     }
 
+    function mapel(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelmapel").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('mapel/tableMapel/'); ?>" + a, true);
+        xhttp.send();
+    }
+
     function bab(a) {
         var xhttp;
         xhttp = new XMLHttpRequest();
@@ -249,15 +278,39 @@
         xhttp.send();
     }
 
-    function mapel(a) {
+    function kunci(a) {
         var xhttp;
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("tabelmapel").innerHTML = this.responseText;
+                document.getElementById("tabelkunci").innerHTML = this.responseText;
             }
         };
-        xhttp.open("POST", "<?= base_url('mapel/tableMapel/'); ?>" + a, true);
+        xhttp.open("POST", "<?= base_url('kunci/tableKunci/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function paket(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelpaket").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('paket/tablePaket/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function jawaban(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabeljawaban").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('jawaban/tableJawaban/'); ?>" + a, true);
         xhttp.send();
     }
     <?php foreach ($soal as $s) : ?>

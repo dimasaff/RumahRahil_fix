@@ -44,4 +44,8 @@ class Bab_model_api extends CI_Model
         $this->db->update('tb_bab_latihan', $data, ['id_bab_latihan' => $user]);
         return $this->db->affected_rows();
     }
+    public function getBabSMP()
+    {
+        return $this->db->query("SELECT*FROM tb_bab_latihan WHERE id_bab_latihan > 0")->result_array();
+    }
 }
