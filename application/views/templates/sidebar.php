@@ -24,11 +24,11 @@
         <div id="collapseBootstrapSD" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data SD</h6>
-                <a class="collapse-item" href="<?= base_url('Tema'); ?>">Tema</a>
-                <a class="collapse-item" href="<?= base_url('Subtema'); ?>">Sub Tema</a>
-                <a class="collapse-item" href="<?= base_url('PaketSoalSd'); ?>">Paket Latihan</a>
-                <a class="collapse-item" href="<?= base_url('KunciJawabanSD'); ?>">Kunci Jawaban</a>
-                <a class="collapse-item" href="popovers.html">Soal</a>
+                <a class="collapse-item" href="<?= base_url('Sd_Controllers/Tema'); ?>">Tema</a>
+                <a class="collapse-item" href="<?= base_url('Sd_Controllers/Subtema'); ?>">Sub Tema</a>
+                <a class="collapse-item" href="<?= base_url('Sd_Controllers/PaketSoalSd'); ?>">Paket Latihan</a>
+                <a class="collapse-item" href="<?= base_url('Sd_Controllers/KunciJawabanSD'); ?>">Kunci Jawaban</a>
+                <a class="collapse-item" href="<?= base_url('Sd_Controllers/SoalSd'); ?>">Soal</a>
                 <a class="collapse-item" href="progress-bar.html">Option Jawaban</a>
             </div>
         </div>

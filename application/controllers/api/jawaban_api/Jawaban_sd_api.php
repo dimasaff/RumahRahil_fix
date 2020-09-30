@@ -68,7 +68,7 @@ class Jawaban_sd_api extends REST_Controller
             'id_jawaban_latihan_sd' => $this->post('id_jawaban_latihan_sd'),
             'kunci_jawaban_sd_id' => $this->post('kunci_jawaban_sd_id'),
             'soal_latihan_sd_id' => $this->post('soal_latihan_sd_id'),
-            'option_a' => $this->post('option_a'), 
+            'option_a' => $this->post('option_a'),
             'option_b' => $this->post('option_b'),
             'option_c' => $this->post('option_c'),
             'option_d' => $this->post('option_d')
@@ -94,7 +94,7 @@ class Jawaban_sd_api extends REST_Controller
             'id_jawaban_latihan_sd' => $this->put('id_jawaban_latihan_sd'),
             'kunci_jawaban_sd_id' => $this->put('kunci_jawaban_sd_id'),
             'soal_latihan_sd_id' => $this->put('soal_latihan_sd_id'),
-            'option_a' => $this->put('option_a'), 
+            'option_a' => $this->put('option_a'),
             'option_b' => $this->put('option_b'),
             'option_c' => $this->put('option_c'),
             'option_d' => $this->put('option_d')

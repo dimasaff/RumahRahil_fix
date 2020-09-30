@@ -8,8 +8,8 @@
                         <div class="col-lg">
                             <?= $this->session->flashdata('message'); ?>
                         </div>
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
                         <div class="col-md-5 mt-2 mb-2">
+                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah data</a>
                             <select id="sortKelas" class="form-control" required onchange="actionTemaSD()">
                                 <option selected value="all">Tampilkan Semua</option>..</option>
                                 <?php foreach ($kelas as $t) : ?>
@@ -44,14 +44,14 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" id="form-theme" novalidate method="POST" action="<?= base_url('tema'); ?>">
+                <form class="needs-validation" id="form-theme" novalidate method="POST" action="<?= base_url('Sd_Controllers/Tema'); ?>">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="inputKelas">Kelas</label>
                             <select id="inputKelas" class="form-control" name="kelas" required>
                                 <option value="" selected>Pilih Kelas....</option>
                                 <?php foreach ($kelas as $t) : ?>
-                                    <option value="<?= $t['id_kelas']; ?>">SD <?= $t['nama_kelas']; ?></option>
+                                    <option value="<?= $t['id_kelas']; ?>"><?= $t['nama_kelas']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="invalid-feedback">

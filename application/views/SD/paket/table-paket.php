@@ -21,7 +21,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" method="POST" action="<?= base_url('PaketSoalSd/updatePaketsd/') . $stm['id_paket_latihan_sd']; ?>" novalidate>
+                <form class="needs-validation" method="POST" action="<?= base_url('Sd_Controllers/PaketSoalSd/updatePaketsd/') . $stm['id_paket_latihan_sd']; ?>" novalidate>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="inputKelas">SubTema</label>
@@ -57,7 +57,7 @@
     <div class="modal fade" id="deleteModal<?= $tm['id_paket_latihan_sd']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel<?= $tm['id_paket_latihan_sd']; ?>" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form method="POST" action="<?= base_url('PaketSoalSd/deletePaketsd/') . $tm['id_paket_latihan_sd']; ?>">
+                <form method="POST" action="<?= base_url('Sd_Controllers/PaketSoalSd/deletePaketsd/') . $tm['id_paket_latihan_sd']; ?>">
                     <div class="modal-header">
                         <h5 class="modal-title" id="deleteModalLabel<?= $tm['id_paket_latihan_sd']; ?>">Hapus Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

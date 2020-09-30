@@ -11,6 +11,36 @@ class Soal_sd_model_api extends CI_Model
         }
     }
 
+    public function getSoalSdJoinWithAllItem($id = null)
+    {
+        if ($id === null) {
+            return $this->db->query("SELECT kjs.jawaban_benar, ns.no_soal, pls.nama_paket_sd, ss.nama_subtema, sls.id_soal_latihan_sd, sls.paket_latihan_sd_id, sls.kunci_jawaban_sd_id, sls.no_soal_id, sls.soal_text, sls.soal_gambar, sls.soal_suara 
+                                        FROM tb_kunci_jawaban_sd kjs 
+                                        JOIN tb_soal_latihan_sd sls ON kjs.id_kunci_jawaban_sd = sls.kunci_jawaban_sd_id 
+                                        JOIN tb_no_soal ns ON ns.id_no_soal = sls.no_soal_id
+                                        JOIN tb_paket_latihan_sd pls ON pls.id_paket_latihan_sd = sls.paket_latihan_sd_id
+                                        JOIN tb_subtema_sd ss ON ss.id_subtema_sd = pls.subtema_sd_id
+                                        ORDER BY pls.nama_paket_sd ASC")->result_array();
+        } else {
+            return $this->db->query("SELECT kjs.jawaban_benar, ns.no_soal, pls.nama_paket_sd, ss.nama_subtema, sls.id_soal_latihan_sd, sls.paket_latihan_sd_id, sls.kunci_jawaban_sd_id, sls.no_soal_id, sls.soal_text, sls.soal_gambar, sls.soal_suara 
+                                        FROM tb_kunci_jawaban_sd kjs 
+                                        JOIN tb_soal_latihan_sd sls ON kjs.id_kunci_jawaban_sd = sls.kunci_jawaban_sd_id 
+                                        JOIN tb_no_soal ns ON ns.id_no_soal = sls.no_soal_id
+                                        JOIN tb_paket_latihan_sd pls ON pls.id_paket_latihan_sd = sls.paket_latihan_sd_id
+                                        JOIN tb_subtema_sd ss ON ss.id_subtema_sd = pls.subtema_sd_id
+                                        WHERE sls.paket_latihan_sd_id = $id")->result_array();
+        }
+    }
+    public function getSoalSdWhereIdSoal($id)
+    {
+        return $this->db->query("SELECT kjs.jawaban_benar, ns.no_soal, pls.nama_paket_sd, ss.nama_subtema, sls.id_soal_latihan_sd, sls.paket_latihan_sd_id, sls.kunci_jawaban_sd_id, sls.no_soal_id, sls.soal_text, sls.soal_gambar, sls.soal_suara 
+                                    FROM tb_kunci_jawaban_sd kjs 
+                                    JOIN tb_soal_latihan_sd sls ON kjs.id_kunci_jawaban_sd = sls.kunci_jawaban_sd_id 
+                                    JOIN tb_no_soal ns ON ns.id_no_soal = sls.no_soal_id
+                                    JOIN tb_paket_latihan_sd pls ON pls.id_paket_latihan_sd = sls.paket_latihan_sd_id
+                                    JOIN tb_subtema_sd ss ON ss.id_subtema_sd = pls.subtema_sd_id
+                                    WHERE sls.id_soal_latihan_sd = $id")->result_array();
+    }
     public function deleteSoalsd($soalsd)
     {
         $this->db->delete('tb_soal_latihan_sd', ['id_soal_latihan_sd' => $soalsd]);
@@ -21,7 +51,7 @@ class Soal_sd_model_api extends CI_Model
         $this->db->insert('tb_soal_latihan_sd', $data);
         return $this->db->affected_rows();
     }
-    public  function updateSoalsd($data, $soalsd)
+    public function updateSoalsd($data, $soalsd)
     {
         $this->db->update('tb_soal_latihan_sd', $data, ['id_soal_latihan_sd' => $soalsd]);
         return $this->db->affected_rows();

@@ -17,7 +17,7 @@ class KunciJawabanSD extends CI_Controller
         $data['user'] = $this->user->getUserWhereEmail($email);
         $data['paket'] = $this->paket->getPaketsdJoinSubtema();
         $data['no_soal'] = $this->db->get('tb_no_soal')->result_array();
-        $data['kunci'] = $this->kunci->getKunciSdJoinPaketAndNoSoal();
+        $data['kunci']['kunci'] = $this->kunci->getKunciSdJoinPaketAndNoSoalOrderASC();
         $data['title'] = 'Kunci Jawaban Soal SD';
         if ($this->input->post('nama_paket_sd') === null) {
             $this->load->view('templates/header', $data);
@@ -33,7 +33,7 @@ class KunciJawabanSD extends CI_Controller
             ];
             $this->kunci->createKuncisd($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah data Berhasil</div>');
-            redirect('KunciJawabanSD');
+            redirect('Sd_Controllers/KunciJawabanSD');
         }
     }
     public function tableKuncisd($val)
@@ -42,5 +42,22 @@ class KunciJawabanSD extends CI_Controller
         $data['kunci'] = $this->kunci->getKunciSdJoinPaketAndNoSoal($val);
         $data['no_soal'] = $this->db->get('tb_no_soal')->result_array();
         $this->load->view('SD/kunci/table-kunci', $data);
+    }
+    public function updateKunciSd($id)
+    {
+        $data = [
+            'paket_latihan_sd_id' => $this->input->post('nama_paket_sd'),
+            'no_soal_id' => $this->input->post('no_soal'),
+            'jawaban_benar' => $this->input->post('jawaban_benar')
+        ];
+        $this->kunci->updateKuncisd($data, $id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Edit data Berhasil</div>');
+        redirect('Sd_Controllers/KunciJawabanSD');
+    }
+    public function deleteKunciSd($id)
+    {
+        $this->kunci->deleteKuncisd($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data Berhasil</div>');
+        redirect('Sd_Controllers/KunciJawabanSD');
     }
 }

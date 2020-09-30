@@ -2,7 +2,7 @@
 <?php foreach ($kunci as $st) : ?>
     <tr>
         <th scope="row"><?= $i; ?></th>
-        <td><?= $st['nama_paket_sd']; ?></td>
+        <td><?= $st['nama_paket_sd'] . " : " . $st['nama_subtema']; ?></td>
         <td><?= $st['no_soal']; ?></td>
         <td><?= $st['jawaban_benar']; ?></td>
         <td>
@@ -22,12 +22,12 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" method="POST" action="<?= base_url('PaketSoalSd/updatePaketsd/') . $stm['id_kunci_jawaban_sd']; ?>" novalidate>
+                <form class="needs-validation" method="POST" action="<?= base_url('Sd_Controllers/KunciJawabanSD/updateKunciSd/') . $stm['id_kunci_jawaban_sd']; ?>" novalidate>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="no_soal">Pilih Paket Soal</label>
                             <select id="no_soal" class="form-control" name="nama_paket_sd" required>
-                                <option selected value="<?=$stm['paket_latihan_sd_id']?>"><?= $stm['nama_paket_sd'] . " : " . $stm['nama_subtema']; ?></option>
+                                <option selected value="<?= $stm['paket_latihan_sd_id'] ?>"><?= $stm['nama_paket_sd'] . " : " . $stm['nama_subtema']; ?></option>
                                 <?php foreach ($paket as $t) : ?>
                                     <option value="<?= $t['id_paket_latihan_sd']; ?>"><?= $t['nama_paket_sd'] . " : " . $t['nama_subtema']; ?></option>
                                 <?php endforeach; ?>
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label for="no_soal_sd">Pilih Nomer Soal</label>
                             <select id="no_soal_sd" class="form-control" name="no_soal" required>
-                                <option selected value="">Pilih..</option>
+                                <option selected value="<?= $stm['no_soal_id']; ?>"><?= $stm['no_soal'] ?></option>
                                 <?php foreach ($no_soal as $t) : ?>
                                     <option value="<?= $t['id_no_soal']; ?>"><?= $t['no_soal']; ?></option>
                                 <?php endforeach; ?>
@@ -50,14 +50,14 @@
                         </div>
                         <div class="form-group">
                             <label for="jawaban_benar">Jawaban Benar</label>
-                            <input type="text" class="form-control" id="jawaban_benar" placeholder="Masukkan Jawaban Benar" name="jawaban_benar" value="<?=?>" required>
+                            <input type="text" class="form-control" id="jawaban_benar" placeholder="Masukkan Jawaban Benar" name="jawaban_benar" value="<?= $stm['jawaban_benar']; ?>" required>
                             <div class="invalid-feedback">
                                 Data Tidak Boleh Kosong
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Ubah</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -70,7 +70,7 @@
     <div class="modal fade" id="deleteModal<?= $tm['id_kunci_jawaban_sd']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel<?= $tm['id_kunci_jawaban_sd']; ?>" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form method="POST" action="<?= base_url('PaketSoalSd/deletePaketsd/') . $tm['id_kunci_jawaban_sd']; ?>">
+                <form action="<?= base_url('Sd_Controllers/KunciJawabanSD/deleteKunciSd/') . $tm['id_kunci_jawaban_sd']; ?>" method="post">
                     <div class="modal-header">
                         <h5 class="modal-title" id="deleteModalLabel<?= $tm['id_kunci_jawaban_sd']; ?>">Hapus Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

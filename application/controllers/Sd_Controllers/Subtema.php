@@ -30,7 +30,7 @@ class Subtema extends CI_Controller
             ];
             $this->Subtema->createSubtema($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah data Berhasil</div>');
-            redirect('Subtema');
+            redirect('Sd_Controllers/Subtema');
         }
     }
     public function updateSubtema($id)
@@ -41,13 +41,13 @@ class Subtema extends CI_Controller
         ];
         $this->Subtema->updateSubtema($data, $id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Edit data Berhasil</div>');
-        redirect('Subtema');
+        redirect('Sd_Controllers/Subtema');
     }
     public function deleteSubtema($id)
     {
         $this->Subtema->deleteSubtema($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data Berhasil</div>');
-        redirect('Subtema');
+        redirect('Sd_Controllers/Subtema');
     }
     public function tableSubtema($val)
     {
