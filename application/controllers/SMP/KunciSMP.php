@@ -31,7 +31,7 @@ class KunciSMP extends CI_Controller
             ];
             $this->kunci->createKuncilatihan($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah data Berhasil</div>');
-            redirect('Soal/KunciSMP/');
+            redirect('SMP/KunciSMP/');
         }
     }
 
@@ -43,7 +43,7 @@ class KunciSMP extends CI_Controller
         ];
         $this->kunci->updateKuncilatihan($data, $id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update data Berhasil</div>');
-        redirect('Soal/KunciSMP/');
+        redirect('SMP/KunciSMP/');
     }
 
     public function tableKunci($val)
@@ -59,6 +59,6 @@ class KunciSMP extends CI_Controller
     {
         $this->kunci->deleteKuncilatihan($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data Berhasil</div>');
-        redirect('Soal/KunciSMP/');
+        redirect('SMP/KunciSMP/');
     }
 }

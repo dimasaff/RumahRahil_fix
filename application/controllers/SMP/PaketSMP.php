@@ -30,7 +30,7 @@ class PaketSMP extends CI_Controller
             ];
             $this->paket->createPaketlatihan($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah data Berhasil</div>');
-            redirect('Soal/PaketSMP/');
+            redirect('SMP/PaketSMP/');
         }
     }
 
@@ -42,7 +42,7 @@ class PaketSMP extends CI_Controller
         ];
         $this->paket->updatePaketlatihan($data, $id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update data Berhasil</div>');
-        redirect('Soal/PaketSMP/');
+        redirect('SMP/PaketSMP/');
     }
 
     public function tablePaket($val)
@@ -58,6 +58,6 @@ class PaketSMP extends CI_Controller
     {
         $this->paket->deletePaketlatihan($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data Berhasil</div>');
-        redirect('Soal/PaketSMP/');
+        redirect('SMP/PaketSMP/');
     }
 }

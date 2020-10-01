@@ -33,7 +33,7 @@ class JawabanSMP extends CI_Controller
             ];
             $this->jawaban->createJawabanlatihan($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah data Berhasil</div>');
-            redirect('Soal/JawabanSMP/');
+            redirect('SMP/JawabanSMP/');
         }
     }
 
@@ -48,7 +48,7 @@ class JawabanSMP extends CI_Controller
         ];
         $this->jawaban->updateJawabanlatihan($data, $id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update data Berhasil</div>');
-        redirect('Soal/JawabanSMP/');
+        redirect('SMP/JawabanSMP/');
     }
 
     public function tableJawaban($val)
@@ -64,6 +64,6 @@ class JawabanSMP extends CI_Controller
     {
         $this->jawaban->deleteJawabanlatihan($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data Berhasil</div>');
-        redirect('Soal/JawabanSMP/');
+        redirect('SMP/JawabanSMP/');
     }
 }

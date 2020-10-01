@@ -36,7 +36,7 @@ class SoalSMP extends CI_Controller
             ];
             $this->soal->createSoal($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah data Berhasil</div>');
-            redirect('Soal/SoalSMP/');
+            redirect('SMP/SoalSMP/');
         }
     }
 
@@ -51,7 +51,7 @@ class SoalSMP extends CI_Controller
         ];
         $this->soal->updateSoal($data, $id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update data Berhasil</div>');
-        redirect('Soal/SoalSMP/');
+        redirect('SMP/SoalSMP/');
     }
 
     public function tableSoal($val)
@@ -67,6 +67,6 @@ class SoalSMP extends CI_Controller
     {
         $this->soal->deleteSoal($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data Berhasil</div>');
-        redirect('Soal/SoalSMP/');
+        redirect('SMP/SoalSMP/');
     }
 }
