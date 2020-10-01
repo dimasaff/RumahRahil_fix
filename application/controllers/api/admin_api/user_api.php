@@ -14,7 +14,7 @@ class User_api extends REST_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Admin_model_api/User_model_api', 'api');
+        $this->load->model('Admin_api_model/User_model_api', 'api');
     }
     public function index_get()
     {

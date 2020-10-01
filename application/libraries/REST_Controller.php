@@ -521,7 +521,7 @@ class REST_Controller extends \CI_Controller
             $this->response([
                 $this->config->item('rest_status_field_name')  => false,
                 $this->config->item('rest_message_field_name') => sprintf($this->lang->line('text_rest_invalid_api_key'), $this->rest->key),
-            ], HTTP_FORBIDDEN);
+            ], self::HTTP_FORBIDDEN);
         }
 
         // Check to see if this key has access to the requested controller
@@ -658,7 +658,7 @@ class REST_Controller extends \CI_Controller
             // If not greater than zero, then set the HTTP status code as 200 by default
             // Though perhaps 500 should be set instead, for the developer not passing a
             // correct HTTP status code
-            $http_code > 0 || $http_code = HTTP_OK;
+            $http_code > 0 || $http_code = self::HTTP_OK;
 
             $this->output->set_status_header($http_code);
 
