@@ -1,14 +1,21 @@
 <?php
 
+use GuzzleHttp\Client;
+
 class User_model_api extends CI_Model
 {
-    public function getUser($user = null)
+    public function getUser()
     {
-        if ($user === null) {
-            return $this->db->get('tb_user')->result_array();
-        } else {
-            return $this->db->get_where('tb_user', ['id_user' => $user])->result_array();
-        }
+        $client = new Client();
+
+        $response = $client->request('GET', 'http://localhost/RumahRahil/api/admin_api/User_api', [
+           'query' => [
+               'rahil-key' => 'pls123'
+           ]  
+        ]);
+
+        $result = json_decode($response->getBody()->getContents(), true);
+        return $result['data'];
     }
     public function getUserWhereEmail($email)
     {

@@ -1,14 +1,21 @@
 <?php
 
+use GuzzleHttp\Client;
+
 class Tema_model_api extends CI_Model
 {
-    public function getTema($tema = null)
+    public function getTema()
     {
-        if ($tema === null) {
-            return $this->db->get('tb_tema_sd')->result_array();
-        } else {
-            return $this->db->get_where('tb_tema_sd', ['id_tema_sd' => $tema])->result_array();
-        }
+        $client = new Client();
+
+        $response = $client->request('GET', 'http://localhost/RumahRahil/api/admin_api/Tema_sd_api', [
+           'query' => [
+               'rahil-key' => 'pls123'
+           ]  
+        ]);
+
+        $result = json_decode($response->getBody()->getContents(), true);
+        return $result['data'];
     }
     public function getTemaJoinKelas($kelasId = null)
     {
