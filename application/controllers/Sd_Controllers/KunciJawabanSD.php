@@ -11,6 +11,7 @@ class KunciJawabanSD extends CI_Controller
         $this->load->model('Paket_api_model/Paket_sd_model_api', 'paket');
         $this->load->model('Kunci_api_model/Kunci_sd_model_api', 'kunci');
         $this->load->model('Soal_api_model/Soal_sd_model_api', 'soal');
+        $this->load->model('Jawaban_api_model/jawaban_sd_model_api', 'jawaban');
     }
     public function index()
     {
@@ -18,6 +19,7 @@ class KunciJawabanSD extends CI_Controller
         $data['user'] = $this->user->getUserWhereEmail($email);
         $data['paket'] = $this->paket->getPaketsdJoinSubtema();
         $data['soal'] = $this->soal->getSoalSdJoinWithAllItem();
+        $data['jawaban'] = $this->jawaban->getJawabanSdJoinWithAllItems();
         $data['no_soal'] = $this->db->get('tb_no_soal')->result_array();
         $data['kunci']['kunci'] = $this->kunci->getKunciSdJoinPaketAndNoSoalOrderASC();
         $data['title'] = 'Kunci Jawaban Soal SD';

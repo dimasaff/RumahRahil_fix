@@ -9,6 +9,7 @@ class Subtema extends CI_Controller
         $this->load->model('Admin_api_model/User_model_api', 'user');
         $this->load->model('Admin_api_model/Tema_model_api', 'tema');
         $this->load->model('Admin_api_model/Subtema_model_api', 'Subtema');
+        $this->load->model('Jawaban_api_model/jawaban_sd_model_api', 'jawaban');
         $this->load->model('Soal_api_model/Soal_sd_model_api', 'soal');
     }
     public function index()
@@ -17,6 +18,7 @@ class Subtema extends CI_Controller
         $data['user'] = $this->user->getUserWhereEmail($email);
         $data['tema'] = $this->tema->getTema();
         $data['soal'] = $this->soal->getSoalSdJoinWithAllItem();
+        $data['jawaban'] = $this->jawaban->getJawabanSdJoinWithAllItems();
         $data['subtema']['subtema'] = $this->Subtema->getSubtemaJoinWithTema();
         $data['title'] = 'Subtema';
         if ($this->input->post('nama_tema') == null) {

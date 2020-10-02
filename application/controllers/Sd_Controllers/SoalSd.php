@@ -9,6 +9,7 @@ class SoalSd extends CI_Controller
         $this->load->model('Admin_api_model/User_model_api', 'user');
         $this->load->model('Paket_api_model/Paket_sd_model_api', 'paket');
         $this->load->model('Kunci_api_model/Kunci_sd_model_api', 'kunci');
+        $this->load->model('Jawaban_api_model/jawaban_sd_model_api', 'jawaban');
         $this->load->model('Soal_api_model/Soal_sd_model_api', 'soal');
     }
     public function index()
@@ -18,6 +19,7 @@ class SoalSd extends CI_Controller
         $data['paket'] = $this->paket->getPaketsdJoinSubtema();
         $data['kunci'] = $this->kunci->getKunciSdJoinPaketAndNoSoal();
         $data['soal'] = $this->soal->getSoalSdJoinWithAllItem();
+        $data['jawaban'] = $this->jawaban->getJawabanSdJoinWithAllItems();
         $data['no_soal'] = $this->db->get('tb_no_soal')->result_array();
         $data['title'] = 'Soal Jawaban Soal SD';
         if ($this->input->post('nama_paket_sd') === null) {

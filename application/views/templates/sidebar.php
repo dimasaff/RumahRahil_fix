@@ -4,7 +4,7 @@
         <div class="sidebar-brand-icon">
             <img src="<?= base_url('assets/'); ?>img/favlogo.png">
         </div>
-        <div class="sidebar-brand-text mx-3">Rumah Rahil</div>
+        <div class="sidebar-brand-text mx-3">Rumah Rahil Education</div>
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item">
@@ -29,7 +29,7 @@
                 <a class="collapse-item" href="<?= base_url('Sd_Controllers/PaketSoalSd'); ?>">Paket Latihan</a>
                 <a class="collapse-item" href="<?= base_url('Sd_Controllers/KunciJawabanSD'); ?>">Kunci Jawaban</a>
                 <a class="collapse-item" href="<?= base_url('Sd_Controllers/SoalSd'); ?>">Soal</a>
-                <a class="collapse-item" href="progress-bar.html">Option Jawaban</a>
+                <a class="collapse-item" href="<?= base_url('Sd_controllers/JawabanSd'); ?>">Option Jawaban</a>
             </div>
         </div>
     </li>
