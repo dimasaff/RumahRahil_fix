@@ -4,11 +4,19 @@ use GuzzleHttp\Client;
 
 class User_model_api extends CI_Model
 {
+
+    private $_client;
+
+    public function __construct() {
+        $this->_client = new Client([
+            'base_uri' =>  'http://localhost/RumahRahil/api/'
+        ]);
+    }
+
     public function getUser()
     {
-        $client = new Client();
-
-        $response = $client->request('GET', 'http://localhost/RumahRahil/api/admin_api/User_api', [
+        
+        $response = $this->_client->request('GET', 'admin_api/User_api', [
            'query' => [
                'rahil-key' => 'pls123'
            ]  
