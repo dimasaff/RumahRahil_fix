@@ -9,7 +9,7 @@ class Tema_model_api extends CI_Model
 
     public function __construct() {
         $this->_client = new Client([
-            'base_url' =>  'http://localhost/RumahRahil/api/'
+            'base_uri' =>  'http://localhost/RumahRahil/api/'
         ]);
     }
 
