@@ -48,7 +48,7 @@
 <script src="<?= base_url('asset/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="<?= base_url('asset/'); ?>js/ruang-admin.min.js"></script>
 
-<script>
+<script type="text/javascript">
     (function() {
         'use strict';
         window.addEventListener('load', function() {
@@ -95,9 +95,19 @@
         kunciSd(a);
     }
 
-    function inputKunciSD() {
+    function actionJawabanSD() {
+        let a = document.getElementById('sortJawabanSd').value;
+        jawabanSd(a);
+    }
+
+    function inputKunciSDForSoal() {
         let a = document.getElementById('nama_paket_sd').value;
-        pilihKunciSd(a);
+        pilihKunciSdForSoal(a);
+    }
+
+    function inputKunciSDForJawaban() {
+        let a = document.getElementById('nama_paket_sd').value;
+        pilihKunciSdForJawaban(a);
     }
 
     function actionSoalSD() {
@@ -105,10 +115,17 @@
         sortSoalSD(a);
     }
 
-    function inputNoSoalSd() {
+    function inputNoSoalSdForSoal() {
         let a = document.getElementById('no_soal_sd').value;
         let b = document.getElementById('nama_paket_sd').value;
-        pilihJawabanBenar(a, b);
+        pilihJawabanBenarForSoal(a, b);
+    }
+
+    function inputNoSoalSdForJawaban() {
+        let a = document.getElementById('no_soal_sd').value;
+        let b = document.getElementById('nama_paket_sd').value;
+        pilihSoalGambarForJawaban(a, b);
+        pilihSoalTextForJawaban(a, b);
     }
 
     function actionSoal() {
@@ -204,7 +221,20 @@
         xhttp.send();
     }
 
-    function pilihKunciSd(a) {
+    function jawabanSd(a) {
+
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tabelJawabanSd").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/JawabanSd/tableJawabansd/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function pilihKunciSdForSoal(a) {
         var xhttp;
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -216,7 +246,19 @@
         xhttp.send();
     }
 
-    function pilihJawabanBenar(a, b) {
+    function pilihKunciSdForJawaban(a) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("no_soal_sd").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/JawabanSd/selectNoSoal/'); ?>" + a, true);
+        xhttp.send();
+    }
+
+    function pilihJawabanBenarForSoal(a, b) {
         var xhttp;
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -226,8 +268,34 @@
         };
         xhttp.open("POST", "<?= base_url('Sd_Controllers/SoalSd/selectJawabanBenar/'); ?>" + a + "/" + b, true);
         xhttp.send();
+    }
+
+    function pilihSoalTextForJawaban(a, b) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("soal_text").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/JawabanSd/selectSoal/'); ?>" + a + "/" + b, true);
+        xhttp.send();
 
     }
+
+    function pilihSoalGambarForJawaban(a, b) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("soal_gambar").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "<?= base_url('Sd_Controllers/JawabanSd/selectSoalGambar/'); ?>" + a + "/" + b, true);
+        xhttp.send();
+
+    }
+
 
     function sortSoalSD(a) {
         var xhttp;
@@ -348,6 +416,58 @@
             };
             xhttp.open("POST", "<?= base_url('Sd_Controllers/SoalSd/selectJawabanBenar/'); ?>" + a + "/" + b, true);
             xhttp.send();
+        }
+    <?php endforeach; ?>
+    <?php foreach ($jawaban as $j) : ?>
+
+        function inputKunciSDForJawaban<?= $j['id_jawaban_latihan_sd']; ?>() {
+            let a = document.getElementById('update_nama_paket_sd').value;
+            pilihKunciSdForJawaban<?= $j['id_jawaban_latihan_sd']; ?>(a);
+        }
+
+        function inputNoSoalSdForJawaban<?= $j['id_jawaban_latihan_sd']; ?>() {
+            let a = document.getElementById('update_no_soal_sd').value;
+            let b = document.getElementById('update_nama_paket_sd').value;
+            pilihSoalGambarForJawaban<?= $j['id_jawaban_latihan_sd']; ?>(a, b);
+            pilihSoalTextForJawaban<?= $j['id_jawaban_latihan_sd']; ?>(a, b);
+        }
+
+        function pilihKunciSdForJawaban<?= $j['id_jawaban_latihan_sd']; ?>(a) {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("update_no_soal_sd").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "<?= base_url('Sd_Controllers/JawabanSd/selectNoSoal/'); ?>" + a, true);
+            xhttp.send();
+        }
+
+        function pilihSoalTextForJawaban<?= $j['id_jawaban_latihan_sd']; ?>(a, b) {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("update_soal_text").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "<?= base_url('Sd_Controllers/JawabanSd/selectSoal/'); ?>" + a + "/" + b, true);
+            xhttp.send();
+
+        }
+
+        function pilihSoalGambarForJawaban<?= $j['id_jawaban_latihan_sd']; ?>(a, b) {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("update_soal_gambar").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "<?= base_url('Sd_Controllers/JawabanSd/selectSoalGambar/'); ?>" + a + "/" + b, true);
+            xhttp.send();
+
         }
     <?php endforeach; ?>
 </script>
