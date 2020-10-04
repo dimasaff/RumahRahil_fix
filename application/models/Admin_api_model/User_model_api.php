@@ -7,23 +7,18 @@ class User_model_api extends CI_Model
 
     private $_client;
 
-    public function __construct() {
-        $this->_client = new Client([
-            'base_uri' =>  'http://localhost/RumahRahil/api/'
-        ]);
+    public function __construct()
+    {
     }
 
-    public function getUser()
+    public function getUser($user = null)
     {
-        
-        $response = $this->_client->request('GET', 'admin_api/User_api', [
-           'query' => [
-               'rahil-key' => 'pls123'
-           ]  
-        ]);
 
-        $result = json_decode($response->getBody()->getContents(), true);
-        return $result['data'];
+        if ($user === null) {
+            return $this->db->get('tb_user')->result_array();
+        } else {
+            return $this->db->get_where('tb_user', ['id_user' => $user])->result_array();
+        }
     }
     public function getUserWhereEmail($email)
     {

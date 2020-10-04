@@ -73,7 +73,7 @@ class User_api extends REST_Controller
             'nama' => $this->post('nama'),
             'alamat' => $this->post('alamat'),
             'email' => $this->post('email'),
-            'password' => password_hash($this->post('password'), PASSWORD_DEFAULT),
+            'password' => $this->post('password'),
             'foto_profile' => $this->post('foto_profile'),
             'asal_sekolah' => $this->post('asal_sekolah')
         ];
@@ -102,7 +102,7 @@ class User_api extends REST_Controller
             'nama' => $this->put('nama'),
             'alamat' => $this->put('alamat'),
             'email' => $this->put('email'),
-            'password' => password_hash($this->put('password'), PASSWORD_DEFAULT),
+            'password' => $this->put('password'),
             'foto_profile' => $this->put('foto_profile'),
             'asal_sekolah' => $this->put('asal_sekolah')
         ];

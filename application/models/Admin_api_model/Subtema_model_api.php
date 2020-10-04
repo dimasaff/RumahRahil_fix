@@ -5,24 +5,13 @@ use GuzzleHttp\Client;
 class Subtema_model_api extends CI_Model
 {
 
-    private $_client;
-
-    public function __construct() {
-        $this->_client = new Client([
-            'base_uri' =>  'http://localhost/RumahRahil/api/'
-        ]);
-    }
-
     public function getSubtema($subtema = null)
     {
-        $response = $this->_client->request('GET', 'admin_api/Subtema_sd_api', [
-            'query' => [
-                'rahil-key' => 'pls123'
-            ]  
-         ]);
- 
-         $result = json_decode($response->getBody()->getContents(), true);
-         return $result['data'];
+        if ($subtema === null) {
+            return $this->db->get('tb_subtema_sd')->result_array();
+        } else {
+            return $this->db->get_where('tb_subtema_sd', ['id_subtema_sd' => $subtema])->result_array();
+        }
     }
     public function getSubtemaJoinWithTema($id = null)
     {
