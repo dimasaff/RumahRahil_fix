@@ -5,25 +5,13 @@ use GuzzleHttp\Client;
 class Tema_model_api extends CI_Model
 {
 
-    private $_client;
-
-    public function __construct() {
-        $this->_client = new Client([
-            'base_uri' =>  'http://localhost/RumahRahil/api/'
-        ]);
-    }
-
-    public function getTema()
+    public function getTema($tema = null)
     {
-        
-        $response = $this->_client->request('GET', 'admin_api/Tema_sd_api', [
-           'query' => [
-               'rahil-key' => 'pls123'
-           ]  
-        ]);
-
-        $result = json_decode($response->getBody()->getContents(), true);
-        return $result['data'];
+        if ($tema === null) {
+            return $this->db->get('tb_tema_sd')->result_array();
+        } else {
+            return $this->db->get_where('tb_tema_sd', ['id_tema_sd' => $tema])->result_array();
+        }
     }
     public function getTemaJoinKelas($kelasId = null)
     {
@@ -38,7 +26,7 @@ class Tema_model_api extends CI_Model
                                         WHERE tb_tema_sd.kelas_id = $kelasId")->result_array();
         }
     }
-    
+
     public function deleteTema($tema)
     {
         $this->db->delete('tb_tema_sd', ['id_tema_sd' => $tema]);
