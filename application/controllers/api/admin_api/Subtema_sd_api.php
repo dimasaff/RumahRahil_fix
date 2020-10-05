@@ -9,12 +9,12 @@ require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
 // extends class dari REST_Controller
-class Subsubtema_sd_api extends REST_Controller
+class Subtema_sd_api extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Admin_api_model/Subsubtema_model_api', 'api');
+        $this->load->model('Admin_api_model/Subtema_model_api', 'api');
     }
     public function index_get()
     {
