@@ -1,14 +1,28 @@
 <?php
 
+use GuzzleHttp\Client;
+
 class Soal_latihan_model_api extends CI_Model
 {
+    
+    private $_client;
+
+    public function __construct() {
+        $this->_client = new Client([
+            'base_uri' =>  'http://localhost/RumahRahil/api/'
+        ]);
+    }
+    
     public function getSoallatihan($soallatihan = null)
     {
-        if ($soallatihan === null) {
-            return $this->db->get('tb_soal_latihan')->result_array();
-        } else {
-            return $this->db->get_where('tb_soal_latihan', ['id_soal_latihan' => $soallatihan])->result_array();
-        }
+        $response = $this->_client->request('GET', 'soal_api/Soal_latihan_api', [
+            'query' => [
+                'rahil-key' => 'pls123'
+            ]  
+         ]);
+ 
+         $result = json_decode($response->getBody()->getContents(), true);
+         return $result['data'];
     }
 
     public function getSoalJoinKelas($kelasId = null)

@@ -1,12 +1,12 @@
 <?php
 
-use GuzzleHttp\Client;
+
 
 class User_model_api extends CI_Model
 {
 
-    private $_client;
 
+<<<<<<< Updated upstream
     public function __construct()
     {
     }
@@ -14,6 +14,12 @@ class User_model_api extends CI_Model
     public function getUser($user = null)
     {
 
+=======
+
+    public function getUser($user = null)
+    {
+        
+>>>>>>> Stashed changes
         if ($user === null) {
             return $this->db->get('tb_user')->result_array();
         } else {

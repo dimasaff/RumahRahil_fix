@@ -1,14 +1,28 @@
 <?php
 
+use GuzzleHttp\Client;
+
 class Mapel_model_api extends CI_Model
 {
+    
+    private $_client;
+
+    public function __construct() {
+        $this->_client = new Client([
+            'base_uri' =>  'http://localhost/RumahRahil/api/'
+        ]);
+    }
+
     public function getMapel($mapel = null)
     {
-        if ($mapel === null) {
-            return $this->db->get('tb_mapel')->result_array();
-        } else {
-            return $this->db->get_where('tb_mapel', ['id_mapel' => $mapel])->result_array();
-        }
+        $response = $this->_client->request('GET', 'admin_api/Mapel_sd_api', [
+            'query' => [
+                'rahil-key' => 'pls123'
+            ]  
+         ]);
+ 
+         $result = json_decode($response->getBody()->getContents(), true);
+         return $result['data'];
     }
 
 

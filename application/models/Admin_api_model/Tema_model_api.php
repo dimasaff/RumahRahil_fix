@@ -1,6 +1,5 @@
 <?php
 
-use GuzzleHttp\Client;
 
 class Tema_model_api extends CI_Model
 {
@@ -11,8 +10,13 @@ class Tema_model_api extends CI_Model
             return $this->db->get('tb_tema_sd')->result_array();
         } else {
             return $this->db->get_where('tb_tema_sd', ['id_tema_sd' => $tema])->result_array();
+<<<<<<< Updated upstream
         }
+=======
+        }            
+>>>>>>> Stashed changes
     }
+
     public function getTemaJoinKelas($kelasId = null)
     {
         if ($kelasId === null) {
